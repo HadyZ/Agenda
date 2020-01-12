@@ -10,8 +10,18 @@
        
         <h1>Student Agenda</h1>
     </div>
+
     <div class="datepicker">
+    <div class="form-group">
             <input type="date" name="dateofbirth">
+</div>
+            <div class="form-group">
+    <select  class="form-control students-select" id="exampleFormControlSelect2">
+      <option>STudent 1</option>
+      <option>STudent 2</option>
+    
+    </select>
+  </div>
         </div>
     <div class="content-container">
 
