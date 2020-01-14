@@ -13,36 +13,6 @@
 
 <body>
 
-     
-        document.getElementById("tableContent").innerHTML =    document.write(html);
-        // var body = document.getElementsByID('tableContent');
-        // var tbl = document.createElement('table');
-        // tbl.class = 'table table-striped';
-        // tbl.setAttribute('border', '1');
-        // var tbdy = document.createElement('tbody');
-        // for (var i = 0; i < 3; i++) {
-        //     var tr = document.createElement('tr');
-        //     for (var j = 0; j < 2; j++) {
-        //         if (i == 2 && j == 1) {
-        //             break
-        //         } else {
-        //             var td = document.createElement('td');
-        //             td.appendChild(document.createTextNode('\u0020'))
-        //             i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
-        //             tr.appendChild(td)
-        //         }
-        //     }
-        //     tbdy.appendChild(tr);
-        // }
-        // tbl.appendChild(tbdy);
-        // body.appendChild(tbl)
-
-        console.log(html);
-       
-    }
-    tableCreate();
-    </script>
-
     <div class="dashboard-container container">
         <div class="row">
             <div class="sidemenu-container col-md-2">
@@ -93,15 +63,22 @@
                             </div>
                         </div>
                     </div>
+
+                   
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                     <div id="tableContent">
             
+            </div>
                     </div>
+              
 
                 </div>
             </div>
         </div>
     </div>
-    </div>
+   
 
 
 
@@ -132,30 +109,6 @@
         };
         html += "</tbody></table>";
 
-
-        // var body = document.getElementsByID('tableContent');
-        // var tbl = document.createElement('table');
-        // tbl.class = 'table table-striped';
-        // tbl.setAttribute('border', '1');
-        // var tbdy = document.createElement('tbody');
-        // for (var i = 0; i < 3; i++) {
-        //     var tr = document.createElement('tr');
-        //     for (var j = 0; j < 2; j++) {
-        //         if (i == 2 && j == 1) {
-        //             break
-        //         } else {
-        //             var td = document.createElement('td');
-        //             td.appendChild(document.createTextNode('\u0020'))
-        //             i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
-        //             tr.appendChild(td)
-        //         }
-        //     }
-        //     tbdy.appendChild(tr);
-        // }
-        // tbl.appendChild(tbdy);
-        // body.appendChild(tbl)
-
-        console.log(html);
         var dd = document.getElementById("tableContent").insertAdjacentHTML("beforeend", html);
 
     }
