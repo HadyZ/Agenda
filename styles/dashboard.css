@@ -6,6 +6,10 @@ h2 {
     padding: 1.5em 0;
 }
 
+button {
+    margin-left: 1em !important;
+}
+
 .sidemenu-container {
     height: 100vh;
     background-color: #111;

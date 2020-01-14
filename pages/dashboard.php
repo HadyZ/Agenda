@@ -27,7 +27,7 @@
             <div class="content-container col-md-10">
                 <div class="row">
                     <div style="display: flex;flex:0.4">
-                        <h2>Sidebar</h2>
+                        <h2>Content</h2>
                     </div>
                     <div style="display: flex;flex:0.6;align-items: center; justify-content: flex-end;">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teacherForm">
@@ -36,6 +36,66 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTeacherForm">
                 Add teacher
               </button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStudentForm">
+                Add Student
+              </button>
+
+                        <div class="modal fade" id="addStudentForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">
+                                        Add Student
+                                        </h5>
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                                <label for="exampleInputEmail1">Id:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">First Name:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Last Name:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Parent First Name:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Parent Last Name:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Parent Phone:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Class:</label>
+                                                <select multiple class="form-control" id="courseSelect">
+                            <option>One</option>
+                            <option>Two</option>
+                            <option>Three</option>
+                          </select>
+                                            </div>
+                                          
+                                            <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
 
                         <div class="modal fade" id="addTeacherForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
