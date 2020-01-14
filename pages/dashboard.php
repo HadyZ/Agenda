@@ -105,6 +105,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <form>
+                                        <div class="form-group">
+                                                <label for="exampleInputEmail1">Name:</label>
+                                                <input type="text" disabled class="form-control" id="exampleInputEmail1" placeholder="Enter Title" value="Teacher Name"/>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Title:</label>
                                                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Title" />
