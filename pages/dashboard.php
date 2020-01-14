@@ -30,34 +30,121 @@
                         <h2>Sidebar</h2>
                     </div>
                     <div style="display: flex;flex:0.6;align-items: center; justify-content: flex-end;">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Launch demo modal
-                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teacherForm">
+                Add Assignment
+              </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTeacherForm">
+                Add teacher
+              </button>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="addTeacherForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">
-                                            Modal title
+                                            Add Teacher
                                         </h5>
+
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">First Name:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Last Name:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Email" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Password:</label>
+                                                <input type="text" class="form-control" id="description" placeholder="Enter Password" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Class:</label>
+                                                <select multiple class="form-control" id="courseSelect">
+                            <option>One</option>
+                            <option>Two</option>
+                            <option>Three</option>
+                          </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Course:</label>
+                                                <select multiple class="form-control" id="courseSelect">
+                            <option>English</option>
+                            <option>Math</option>
+                            <option>Arabic</option>
+                          </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                                        </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                            Close
-                                        </button>
-                                        <button type="button" class="btn btn-primary">
-                                            Save changes
-                                        </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="teacherForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">
+                                            Assignment
+                                        </h5>
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Title:</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Title" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Description:</label
+                          >
+                          <textarea
+                            type="text"
+                            class="form-control"
+                            id="description"
+                            placeholder="Description"
+                          ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Course:</label>
+                                                <select class="form-control" id="courseSelect">
+                            <option>English</option>
+                            <option>Math</option>
+                            <option>Arabic</option>
+                          </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Class:</label>
+                                                <select class="form-control" id="sectionSelect">
+                            <option>One</option>
+                            <option>Two</option>
+                            <option>Three</option>
+                          </select>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="exampleInputPassword1">Date:</label>
+
+                                                <input type="date" class="form-control" id="datepicker" />
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
