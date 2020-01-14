@@ -12,51 +12,7 @@
 </head>
 
 <body>
-    <script>
-    function tableCreate() {
-        var html = "";
-        html += "<table class='table table-striped'><thead> <tr>";
-        html +=
-            "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Handle</th></tr></thead><tbody>"
 
-        for (var i = 0; i < 5; i++) {
-
-            html += "<tr>";
-            for (var j = 0; j < 3; j++) {
-                html += "<td>" + j + "</td>";
-            }
-            html += "</tr>";
-        };
-        html += "</tbody></table>";
-
-
-        // var body = document.getElementsByID('tableContent');
-        // var tbl = document.createElement('table');
-        // tbl.class = 'table table-striped';
-        // tbl.setAttribute('border', '1');
-        // var tbdy = document.createElement('tbody');
-        // for (var i = 0; i < 3; i++) {
-        //     var tr = document.createElement('tr');
-        //     for (var j = 0; j < 2; j++) {
-        //         if (i == 2 && j == 1) {
-        //             break
-        //         } else {
-        //             var td = document.createElement('td');
-        //             td.appendChild(document.createTextNode('\u0020'))
-        //             i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
-        //             tr.appendChild(td)
-        //         }
-        //     }
-        //     tbdy.appendChild(tr);
-        // }
-        // tbl.appendChild(tbdy);
-        // body.appendChild(tbl)
-
-        console.log(html);
-        document.getElementById("tableContent").innerHTML = html;
-    }
-    tableCreate();
-    </script>
 
     <div class="dashboard-container container">
         <div class="row">
@@ -108,45 +64,16 @@
                             </div>
                         </div>
                     </div>
-                    <div id="tableContent">
+                </div>
+                <div id="tableContent" class="row">
 
-                    </div>
-
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -156,6 +83,53 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <script>
+    function tableCreate() {
+        var html = "";
+        html += "<table class='table table-striped'><thead> <tr>";
+        html +=
+            "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Handle</th></tr></thead><tbody>"
+
+        for (var i = 0; i < 5; i++) {
+
+            html += "<tr>";
+            for (var j = 0; j < 4; j++) {
+                html += "<td>" + j + "</td>";
+            }
+            html += "</tr>";
+        };
+        html += "</tbody></table>";
+
+
+        // var body = document.getElementsByID('tableContent');
+        // var tbl = document.createElement('table');
+        // tbl.class = 'table table-striped';
+        // tbl.setAttribute('border', '1');
+        // var tbdy = document.createElement('tbody');
+        // for (var i = 0; i < 3; i++) {
+        //     var tr = document.createElement('tr');
+        //     for (var j = 0; j < 2; j++) {
+        //         if (i == 2 && j == 1) {
+        //             break
+        //         } else {
+        //             var td = document.createElement('td');
+        //             td.appendChild(document.createTextNode('\u0020'))
+        //             i == 1 && j == 1 ? td.setAttribute('rowSpan', '2') : null;
+        //             tr.appendChild(td)
+        //         }
+        //     }
+        //     tbdy.appendChild(tr);
+        // }
+        // tbl.appendChild(tbdy);
+        // body.appendChild(tbl)
+
+        console.log(html);
+        var dd = document.getElementById("tableContent").insertAdjacentHTML("beforeend", html);
+
+    }
+    tableCreate();
     </script>
 </body>
 
