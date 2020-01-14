@@ -34,11 +34,8 @@ if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) )
 
 }
 
-function mysql_fix_string( $string )
- {
-    if ( get_magic_quotes_gpc() ) $string = stripslashes( $string );
-    return mysql_real_escape_string( $string );
-}
-
-?>
-
+// function mysql_fix_string( $string )
+//  {
+//     if ( get_magic_quotes_gpc() ) $string = stripslashes( $string );
+//     return mysql_real_escape_string( $string );
+// }

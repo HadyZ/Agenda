@@ -17,11 +17,11 @@
         <div class="row">
             <div class="sidemenu-container col-md-2">
                 <div style="height:5em"></div>
-                <a href="#about">Teachers</a>
-                <a href="#services">Parents</a>
-                <a href="#clients">Students</a>
-                <a href="#contact">Homewors</a>
-                <a href="#login.php">Logout</a>
+                <a href="#about" onclick="tableCreate('teachers')">Teachers</a>
+                <a href="#services" onclick="tableCreate('parents')">Parents</a>
+                <a href="#clients" onclick="tableCreate('students')">Students</a>
+                <a href="#contact" onclick="tableCreate('homeworks')">Homeworks</a>
+                <a href="#logout">Logout</a>
             </div>
 
             <div class="content-container col-md-10">
@@ -31,73 +31,81 @@
                     </div>
                     <div style="display: flex;flex:0.6;align-items: center; justify-content: flex-end;">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teacherForm">
-                Add Assignment
-              </button>
+                            Add Assignment
+                        </button>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTeacherForm">
-                Add teacher
-              </button>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStudentForm">
-                Add Student
-              </button>
+                            Add teacher
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStudentForm">
+                            Add Student
+                        </button>
 
-                        <div class="modal fade" id="addStudentForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="addStudentForm" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">
-                                        Add Student
+                                            Add Student
                                         </h5>
 
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                     <div class="modal-body">
                                         <form>
-                                        <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="exampleInputEmail1">Id:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter First Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">First Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter First Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Last Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter Last Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Parent First Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter Last Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Parent Last Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter Last Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Parent Phone:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter Last Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Class:</label>
                                                 <select multiple class="form-control" id="courseSelect">
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
-                          </select>
+                                                    <option>One</option>
+                                                    <option>Two</option>
+                                                    <option>Three</option>
+                                                </select>
                                             </div>
-                                          
+
                                             <button type="submit" class="btn btn-primary">
-                          Submit
-                        </button>
+                                                Submit
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       
 
-                        <div class="modal fade" id="addTeacherForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                        <div class="modal fade" id="addTeacherForm" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -106,52 +114,57 @@
                                         </h5>
 
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                     <div class="modal-body">
                                         <form>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">First Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter First Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Last Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter Last Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Email" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter Email" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Password:</label>
-                                                <input type="text" class="form-control" id="description" placeholder="Enter Password" />
+                                                <input type="text" class="form-control" id="description"
+                                                    placeholder="Enter Password" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Class:</label>
                                                 <select multiple class="form-control" id="courseSelect">
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
-                          </select>
+                                                    <option>One</option>
+                                                    <option>Two</option>
+                                                    <option>Three</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Course:</label>
                                                 <select multiple class="form-control" id="courseSelect">
-                            <option>English</option>
-                            <option>Math</option>
-                            <option>Arabic</option>
-                          </select>
+                                                    <option>English</option>
+                                                    <option>Math</option>
+                                                    <option>Arabic</option>
+                                                </select>
                                             </div>
                                             <button type="submit" class="btn btn-primary">
-                          Submit
-                        </button>
+                                                Submit
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="teacherForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="teacherForm" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -160,45 +173,42 @@
                                         </h5>
 
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
                                     <div class="modal-body">
                                         <form>
-                                        <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="exampleInputEmail1">Name:</label>
-                                                <input type="text" disabled class="form-control" id="exampleInputEmail1" placeholder="Enter Title" value="Teacher Name"/>
+                                                <input type="text" disabled class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter Title" value="Teacher Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Title:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Title" />
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    placeholder="Enter Title" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Description:</label
-                          >
-                          <textarea
-                            type="text"
-                            class="form-control"
-                            id="description"
-                            placeholder="Description"
-                          ></textarea>
-                        </div>
+                                                <label for="exampleInputPassword1">Description:</label>
+                                                <textarea type="text" class="form-control" id="description"
+                                                    placeholder="Description"></textarea>
+                                            </div>
 
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Course:</label>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Course:</label>
                                                 <select class="form-control" id="courseSelect">
-                            <option>English</option>
-                            <option>Math</option>
-                            <option>Arabic</option>
-                          </select>
+                                                    <option>English</option>
+                                                    <option>Math</option>
+                                                    <option>Arabic</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Class:</label>
                                                 <select class="form-control" id="sectionSelect">
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
-                          </select>
+                                                    <option>One</option>
+                                                    <option>Two</option>
+                                                    <option>Three</option>
+                                                </select>
                                             </div>
                                             <div class="form-group ">
                                                 <label for="exampleInputPassword1">Date:</label>
@@ -206,8 +216,8 @@
                                                 <input type="date" class="form-control" id="datepicker" />
                                             </div>
                                             <button type="submit" class="btn btn-primary">
-                          Submit
-                        </button>
+                                                Submit
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
@@ -215,21 +225,19 @@
                         </div>
                     </div>
 
-                   
+
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    <div id="tableContent">
-            
-            </div>
-                    </div>
-              
+                        <div id="tableContent">
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-   
+
 
 
 
@@ -244,7 +252,10 @@
     </script>
 
     <script>
-    function tableCreate() {
+    function tableCreate($member = "teachers") {
+
+
+
         var html = "";
         html += "<table class='table table-striped'><thead> <tr>";
         html +=
@@ -260,11 +271,43 @@
         };
         html += "</tbody></table>";
 
-        var dd = document.getElementById("tableContent").insertAdjacentHTML("beforeend", html);
+        document.getElementById("tableContent").innerHTML = "";
+        document.getElementById("tableContent").insertAdjacentHTML("beforeend", html);
 
     }
     tableCreate();
     </script>
+
+    <?php
+
+
+    function getMemberData($member)
+    {
+        require_once 'connection.php';
+
+        session_start();
+
+
+
+        if ($_SESSION['is_logged_in'] == 1) {
+
+            $u = $_POST['username'];
+            $p = $_POST['password'];
+
+            // make sure username and pass are correct for login
+            $query = "SELECT * FROM users WHERE userRole='" + $member + "'";
+
+            $result = mysqli_query($con, $query);
+
+            if (mysqli_num_rows($result) > 0) {
+                return $result;
+            } else {
+
+                return "";
+            }
+        }
+    }
+    ?>
 </body>
 
 </html>
