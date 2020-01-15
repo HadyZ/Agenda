@@ -1,8 +1,7 @@
 <?php
 require_once 'connection.php';
 
-if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) 
- {
+if (isset($_POST['username']) && isset($_POST['password'])) {
 
     // extract values from user:
     // $u = mysql_real_escape_string( $_POST['username'] );
@@ -14,24 +13,23 @@ if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) )
     // make sure username and pass are correct for login
     $query = "SELECT * FROM users WHERE userEmail='$u' AND userPassword='$p'";
 
-    $result = mysqli_query( $con, $query );
+    $result = mysqli_query($con, $query);
 
-    if ( mysqli_num_rows( $result ) == 1 ) 
- {
+    if (mysqli_num_rows($result) == 1) {
         session_start();
         $_SESSION['is_logged_in'] = 1;
 
         $_SESSION['username'] = $u;
-        header( 'location: dashboard.php' );
-        //also sending a query string containing
-        //the username/isloggedin is allowed.
+        $row = mysqli_fetch_row($result);
+
+        $_SESSION['userRole'] = $row[4];
+        header('location: dashboard.php');
     } else {
 
-        header( 'location: login_fail.php' );
+        header('location: login.php');
         // redirect him back to index page
 
     }
-
 }
 
 // function mysql_fix_string( $string )

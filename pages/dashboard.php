@@ -12,16 +12,19 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    ?>
 
     <div class="dashboard-container container">
         <div class="row">
             <div class="sidemenu-container col-md-2">
                 <div style="height:5em"></div>
-                <a href="">Teachers</a>
-                <a href="#services" onclick="tableCreate('parents')">Parents</a>
-                <a href="#clients" onclick="tableCreate('students')">Students</a>
-                <a href="#contact" onclick="tableCreate('homeworks')">Homeworks</a>
-                <a href="#logout">Logout</a>
+                <a href="dashboard.php?member=teacher">Teachers</a>
+                <a href="dashboard.php?member=parent">Parents</a>
+                <a href="dashboard.php?member=student">Students</a>
+                <a href="dashboard.php?member=assignment">Homeworks</a>
+                <a href="dashboard.php?member=logout">Logout</a>
             </div>
 
             <div class="content-container col-md-10">
@@ -237,29 +240,98 @@
 
                 <?php
 
-                
-if (isset($_GET['member'])) {
-    runMyFunction();
-}
 
-                function runMyFunction()
+                if (isset($_GET['member'])) {
+                    $member = $_GET['member'];
+                    runMyFunction($member);
+                } else {
+                    if ($_SESSION["userRole"] == "admin")
+                        runMyFunction("teacher");
+                    else runMyFunction("assignment");
+                }
+
+                function runMyFunction($member)
                 {
                     require("connection.php");
-                    $query = "SELECT * FROM users"; 
-                    $result = mysqli_query($con, $query);
-                    $r =mysqli_num_rows($result);
 
-                    echo "<table class='table table-striped'><thead> <tr>";
-                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Handle</th></tr></thead><tbody>";
-                    for ($j = 0 ; $j <$r ; $j++)
-                    {
-                    $row = mysqli_fetch_row($result);
 
-                    echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td></tr>";
-                   
-                }   
-                    echo "</tbody></table>";
+                    if (isset($_SESSION['is_logged_in'])) {
+                        if ($_SESSION['is_logged_in'] == 1) {
 
+
+                            switch ($member) {
+                                case 'teacher':
+                                    $query = "SELECT * FROM users where userRole='$member'";
+                                    $result = mysqli_query($con, $query);
+                                    $r = mysqli_num_rows($result);
+
+                                    echo "<table class='table table-striped'><thead> <tr>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Action</th></tr></thead><tbody>";
+                                    for ($j = 0; $j < $r; $j++) {
+                                        $row = mysqli_fetch_row($result);
+
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary'>Edit</button> </td></tr>";
+                                    }
+                                    echo "</tbody></table>";
+
+                                    break;
+                                case 'parent':
+                                    $query = "SELECT * FROM users where userRole='$member'";
+                                    $result = mysqli_query($con, $query);
+                                    $r = mysqli_num_rows($result);
+
+                                    echo "<table class='table table-striped'><thead> <tr>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Action</th></tr></thead><tbody>";
+                                    for ($j = 0; $j < $r; $j++) {
+                                        $row = mysqli_fetch_row($result);
+
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary'>Edit</button> </td></tr>";
+                                    }
+                                    echo "</tbody></table>";
+
+                                    break;
+                                case 'student':
+                                    $query = "SELECT * FROM students";
+                                    $result = mysqli_query($con, $query);
+                                    $r = mysqli_num_rows($result);
+
+                                    echo "<table class='table table-striped'><thead> <tr>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Action</th></tr></thead><tbody>";
+                                    for ($j = 0; $j < $r; $j++) {
+                                        $row = mysqli_fetch_row($result);
+
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary'>Edit</button> </td></tr>";
+                                    }
+                                    echo "</tbody></table>";
+
+                                    break;
+                                case 'assignment':
+                                    $query = "SELECT * FROM assignments";
+                                    $result = mysqli_query($con, $query);
+                                    $r = mysqli_num_rows($result);
+
+                                    echo "<table class='table table-striped'><thead> <tr>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Action</th></tr></thead><tbody>";
+                                    for ($j = 0; $j < $r; $j++) {
+                                        $row = mysqli_fetch_row($result);
+
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary'>Edit</button> </td></tr>";
+                                    }
+                                    echo "</tbody></table>";
+                                    break;
+                                case 'logout':
+                                    session_unset();
+                                    session_destroy();
+                                    echo "<script> location.replace('login.php') </script>";
+                                    // exit(header("location:login.php"));
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    } else {
+                        echo "Nothing to show.....";
+                    }
                 }
 
                 ?>
@@ -279,57 +351,6 @@ if (isset($_GET['member'])) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
-
-    <script>
-    function tableCreate($member = "teachers") {
-        var html = "";
-        html += "<table class='table table-striped'><thead> <tr>";
-        html +=
-            "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Handle</th></tr></thead><tbody>"
-
-        for (var i = 0; i < 5; i++) {
-
-            html += "<tr>";
-            for (var j = 0; j < 4; j++) {
-                html += "<td>" + j + "</td>";
-            }
-            html += "</tr>";
-        };
-        html += "</tbody></table>";
-
-        document.getElementById("tableContent").innerHTML = "";
-        document.getElementById("tableContent").insertAdjacentHTML("beforeend", html);
-
-    }
-   
-    </script>
-
-    <?php
-
-
-    function getMemberData($member)
-    {
-        require_once 'connection.php';
-        session_start();
-        if ($_SESSION['is_logged_in'] == 1) {
-
-            $u = $_POST['username'];
-            $p = $_POST['password'];
-
-            // make sure username and pass are correct for login
-            $query = "SELECT * FROM users WHERE userRole='" + $member + "'";
-
-            $result = mysqli_query($con, $query);
-
-            if (mysqli_num_rows($result) > 0) {
-                return $result;
-            } else {
-
-                return null;
-            }
-        }
-    }
-    ?>
 </body>
 
 </html>
