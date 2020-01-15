@@ -236,25 +236,32 @@
                 </div>
 
                 <?php
+
+                
+if (isset($_GET['member'])) {
+    runMyFunction();
+}
+
                 function runMyFunction()
                 {
-                    // echo 'I just ran a php function';
-                    // echo "<table border><tr><td><u>Welcome " . $_SESSION["Name"] . " you have administrator role</u><br />";
-                    // echo "<table border=2><tr><th>Student code</th><th>Student Name</th><th></th></tr>";
-                    $query = "select * from users";
-                    require("CONNECTION.php");
+                    require("connection.php");
+                    $query = "SELECT * FROM users"; 
                     $result = mysqli_query($con, $query);
-                    if (mysqli_num_rows($result) > 0) {
-                        echo $result;
-                        //also sending a query string containing
-                        //the username/isloggedin is allowed.
-                    }
+                    $r =mysqli_num_rows($result);
+
+                    echo "<table class='table table-striped'><thead> <tr>";
+                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Handle</th></tr></thead><tbody>";
+                    for ($j = 0 ; $j <$r ; $j++)
+                    {
+                    $row = mysqli_fetch_row($result);
+
+                    echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td></tr>";
+                   
+                }   
+                    echo "</tbody></table>";
+
                 }
 
-                if (isset($_GET['member'])) {
-                    runMyFunction();
-                }
-                // echo "</table></td></tr></table>";
                 ?>
             </div>
         </div>
@@ -275,9 +282,6 @@
 
     <script>
     function tableCreate($member = "teachers") {
-
-
-
         var html = "";
         html += "<table class='table table-striped'><thead> <tr>";
         html +=
@@ -297,7 +301,7 @@
         document.getElementById("tableContent").insertAdjacentHTML("beforeend", html);
 
     }
-    tableCreate();
+   
     </script>
 
     <?php
@@ -306,11 +310,7 @@
     function getMemberData($member)
     {
         require_once 'connection.php';
-
         session_start();
-
-
-
         if ($_SESSION['is_logged_in'] == 1) {
 
             $u = $_POST['username'];
@@ -325,7 +325,7 @@
                 return $result;
             } else {
 
-                return "";
+                return null;
             }
         }
     }
