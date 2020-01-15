@@ -17,7 +17,7 @@
         <div class="row">
             <div class="sidemenu-container col-md-2">
                 <div style="height:5em"></div>
-                <a href="#about" onclick="tableCreate('teachers')">Teachers</a>
+                <a href="">Teachers</a>
                 <a href="#services" onclick="tableCreate('parents')">Parents</a>
                 <a href="#clients" onclick="tableCreate('students')">Students</a>
                 <a href="#contact" onclick="tableCreate('homeworks')">Homeworks</a>
@@ -234,6 +234,28 @@
                         </div>
                     </div>
                 </div>
+
+                <?php
+                function runMyFunction()
+                {
+                    // echo 'I just ran a php function';
+                    // echo "<table border><tr><td><u>Welcome " . $_SESSION["Name"] . " you have administrator role</u><br />";
+                    // echo "<table border=2><tr><th>Student code</th><th>Student Name</th><th></th></tr>";
+                    $query = "select * from users";
+                    require("CONNECTION.php");
+                    $result = mysqli_query($con, $query);
+                    if (mysqli_num_rows($result) > 0) {
+                        echo $result;
+                        //also sending a query string containing
+                        //the username/isloggedin is allowed.
+                    }
+                }
+
+                if (isset($_GET['member'])) {
+                    runMyFunction();
+                }
+                // echo "</table></td></tr></table>";
+                ?>
             </div>
         </div>
     </div>
