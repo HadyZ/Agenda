@@ -330,8 +330,14 @@
                             }
                         }
                     } else {
-                        echo "Nothing to show.....";
+                        session_unset();
+                        session_destroy();
+                        echo "<script> location.replace('login.php') </script>";
                     }
+                }
+
+                function onDeleteRow()
+                {
                 }
 
                 ?>
