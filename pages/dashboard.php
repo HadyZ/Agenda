@@ -8,12 +8,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
-    <title>Welcome</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
     <?php
     session_start();
+
+    if (isset($_SESSION['is_logged_in'])) {
+        if ($_SESSION['is_logged_in'] == 1) {
+            if ($_SESSION['isRememberPass']) {
+                setcookie('userName', $_SESSION['userName'], time() + 2 * 24 * 60 * 60);
+                setcookie('userEmail', $_SESSION['userEmail'], time() + 2 * 24 * 60 * 60);
+                setcookie('userPassword', $_SESSION['userPassword'], time() + 2 * 24 * 60 * 60);
+            } else {
+                setcookie('userName', '');
+                setcookie('userEmail', '');
+                setcookie('userPassword', '');
+            }
+        }
+    }
+
+    // if(){
+    //     setcookie('userName', "sassad");
+    // setcookie('userEmail', "sadasfasfssf", time() + 2592000);
+    // setcookie("Auction_Item", "Luxury Car", time() + 2 * 24 * 60 * 60);
+    // }
+
 
     ?>
 
@@ -321,18 +342,17 @@
                                     echo "</tbody></table>";
                                     break;
                                 case 'logout':
-                                    session_unset();
-                                    session_destroy();
+                                    // session_unset();
+                                    // session_destroy();
                                     echo "<script> location.replace('login.php') </script>";
-                                    // exit(header("location:login.php"));
                                     break;
                                 default:
                                     break;
                             }
                         }
                     } else {
-                        session_unset();
-                        session_destroy();
+                        // session_unset();
+                        // session_destroy();
                         echo "<script> location.replace('login.php') </script>";
                     }
                 }

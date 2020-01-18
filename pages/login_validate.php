@@ -1,39 +1,52 @@
-<?php
-require_once 'connection.php';
+<!DOCTYPE html>
+<html>
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+<head>
+    <meta charset="UTF-8" />
+</head>
 
-    // extract values from user:
-    // $u = mysql_real_escape_string( $_POST['username'] );
-    // $p = mysql_real_escape_string( $_POST['password'] );
+<body>
+    <?php
+    require_once 'connection.php';
 
-    $u = $_POST['username'];
-    $p = $_POST['password'];
+    if (isset($_POST['username']) && isset($_POST['password'])) {
 
-    // make sure username and pass are correct for login
-    $query = "SELECT * FROM users WHERE userEmail='$u' AND userPassword='$p'";
+        $u = $_POST['username'];
+        $p = $_POST['password'];
+        $remember_pass = $_POST['isRememberPass'];
 
-    $result = mysqli_query($con, $query);
+        // make sure username and pass are correct for login
+        $query = "SELECT * FROM users WHERE userEmail='$u' AND userPassword='$p'";
 
-    if (mysqli_num_rows($result) == 1) {
-        session_start();
-        $_SESSION['is_logged_in'] = 1;
+        $result = mysqli_query($con, $query);
 
-        $_SESSION['username'] = $u;
-        $row = mysqli_fetch_row($result);
+        if (mysqli_num_rows($result) == 1) {
+            session_start();
 
-        $_SESSION['userRole'] = $row[4];
-        header('location: dashboard.php');
-    } else {
+            $row = mysqli_fetch_row($result);
 
-        header('location: login.php');
-        // redirect him back to index page
+            $_SESSION['is_logged_in'] = 1;
+            $_SESSION['userEmail'] = $u;
+            $_SESSION['userPassword'] = $p;
+            $_SESSION['userName'] = $row[1];
+            $_SESSION['userRole'] = $row[4];
+            $_SESSION['isRememberPass'] = $remember_pass;
 
+            header('location: dashboard.php');
+        } else {
+
+            header('location: login.php');
+            // redirect him back to index page
+
+        }
     }
-}
 
-// function mysql_fix_string( $string )
-//  {
-//     if ( get_magic_quotes_gpc() ) $string = stripslashes( $string );
-//     return mysql_real_escape_string( $string );
-// }
+    // function mysql_fix_string( $string )
+    //  {
+    //     if ( get_magic_quotes_gpc() ) $string = stripslashes( $string );
+    //     return mysql_real_escape_string( $string );
+    // }
+    ?>
+</body>
+
+</html>
