@@ -14,6 +14,7 @@
 <body>
     <?php
     session_start();
+
     ?>
 
     <div class="dashboard-container container">

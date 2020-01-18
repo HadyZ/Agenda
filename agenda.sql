@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2020 at 10:00 PM
+-- Generation Time: Jan 18, 2020 at 11:31 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -84,7 +84,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`userID`, `userName`, `userEmail`, `userPassword`, `userRole`) VALUES
 (1, 'saleh', 'saleh@gmail.com', '123456', 'admin'),
-(3, 'rami', 'rami@dell.com', '123456', 'teacher');
+(3, 'rami', 'rami@dell.com', '123456', 'teacher'),
+(4, 'alaa', 'alaa@gmail.com', '123321', 'parent'),
+(5, 'ameen', 'ameen@gmail.com', 'ameen123', 'teacher');
 
 --
 -- Indexes for dumped tables
@@ -130,7 +132,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
