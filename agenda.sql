@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2020 at 11:31 AM
+-- Generation Time: Jan 18, 2020 at 08:02 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -56,11 +56,10 @@ CREATE TABLE `courses` (
 
 CREATE TABLE `students` (
   `studentID` int(11) NOT NULL,
-  `studentName` varchar(100) NOT NULL,
-  `studentClass` int(10) NOT NULL,
-  `studentCourse` int(10) NOT NULL,
-  `studentFirstName` varchar(100) NOT NULL,
-  `studentLastName` varchar(100) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `pPhoneNumber` int(12) NOT NULL,
+  `class` varchar(50) NOT NULL,
   `studentParent` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
