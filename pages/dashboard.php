@@ -79,44 +79,41 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form>
+                                        <form action="saveContent.php" id="myform" method="POST">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Id:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter First Name" />
+                                                <input type="text" class="form-control" name="studentId"
+                                                    placeholder="Enter Id" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">First Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                <input type="text" class="form-control" name="fname"
                                                     placeholder="Enter First Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Last Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                <input type="text" class="form-control" name="lname"
                                                     placeholder="Enter Last Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Parent First Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter Last Name" />
+                                                <input type="text" class="form-control" name="pFname"
+                                                    placeholder="Enter Parent First Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Parent Last Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter Last Name" />
+                                                <input type="text" class="form-control" name="pLname"
+                                                    placeholder="Enter Parent Last Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Parent Phone:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter Last Name" />
+                                                <input type="text" class="form-control" name="pPhoneNumber"
+                                                    placeholder="Enter Parent Phone Number" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Class:</label>
-                                                <select multiple class="form-control" id="courseSelect">
-                                                    <option>One</option>
-                                                    <option>Two</option>
-                                                    <option>Three</option>
-                                                </select>
+                                                <label for="exampleInputPassword1">Course:</label>
+                                                <input type="text" class="form-control" name="class"
+                                                    placeholder="Enter class Name" />
                                             </div>
 
                                             <button type="submit" class="btn btn-primary">
@@ -250,7 +247,6 @@
                         </div>
                     </div>
 
-
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -355,12 +351,17 @@
                         // session_destroy();
                         echo "<script> location.replace('login.php') </script>";
                     }
+
                 }
 
                 function onDeleteRow()
                 {
                 }
 
+                function saveContent($data){
+
+
+                }
                 ?>
             </div>
         </div>
