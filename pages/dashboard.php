@@ -81,40 +81,48 @@
                                     <div class="modal-body">
                                         <form action="saveContent.php" id="myform" method="POST">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Id:</label>
-                                                <input type="text" class="form-control" name="studentId"
-                                                    placeholder="Enter Id" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">First Name:</label>
+                                                <label for="fname">First Name:</label>
                                                 <input type="text" class="form-control" name="fname"
                                                     placeholder="Enter First Name" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Last Name:</label>
+                                                <label for="lname">Last Name:</label>
                                                 <input type="text" class="form-control" name="lname"
                                                     placeholder="Enter Last Name" />
                                             </div>
+                                            <?php
+
+                                            require "connection.php";
+
+                                            $sql = "SELECT userID,userName FROM users where userRole='parent'";
+
+                                            $result = mysqli_query($con, $sql);
+
+                                            echo "
+                                            <div class='form-group'>
+                                                <label for='studentParentID'>Parent:</label>
+                                                <select class='form-control' name='studentParentID'>";
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo "<option value=" . $row['userID'] . "> " . $row['userName'] . "</option>";
+                                            }
+                                            echo "</select></div>";
+
+                                            ?>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Parent First Name:</label>
-                                                <input type="text" class="form-control" name="pFname"
-                                                    placeholder="Enter Parent First Name" />
+                                                <label for="class">Class:</label>
+                                                <select class='form-control' name="class">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Parent Last Name:</label>
-                                                <input type="text" class="form-control" name="pLname"
-                                                    placeholder="Enter Parent Last Name" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Parent Phone:</label>
-                                                <input type="text" class="form-control" name="pPhoneNumber"
-                                                    placeholder="Enter Parent Phone Number" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Course:</label>
-                                                <input type="text" class="form-control" name="class"
-                                                    placeholder="Enter class Name" />
-                                            </div>
+
 
                                             <button type="submit" class="btn btn-primary">
                                                 Submit
@@ -351,16 +359,14 @@
                         // session_destroy();
                         echo "<script> location.replace('login.php') </script>";
                     }
-
                 }
 
                 function onDeleteRow()
                 {
                 }
 
-                function saveContent($data){
-
-
+                function saveContent($data)
+                {
                 }
                 ?>
             </div>

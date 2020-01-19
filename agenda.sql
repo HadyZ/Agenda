@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2020 at 08:02 PM
+-- Generation Time: Jan 19, 2020 at 10:28 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -56,12 +56,21 @@ CREATE TABLE `courses` (
 
 CREATE TABLE `students` (
   `studentID` int(11) NOT NULL,
-  `fname` varchar(100) NOT NULL,
-  `lname` varchar(100) NOT NULL,
-  `pPhoneNumber` int(12) NOT NULL,
-  `class` varchar(50) NOT NULL,
+  `studentFirstName` varchar(100) NOT NULL,
+  `studentLastName` varchar(100) NOT NULL,
+  `studentClass` int(10) NOT NULL,
   `studentParent` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`studentID`, `studentFirstName`, `studentLastName`, `studentClass`, `studentParent`) VALUES
+(1, 'saleh', 'fakhr', 1, 4),
+(3, 'rami', 'fakhr', 3, 17),
+(5, 'ameen', 'halabi', 6, 17),
+(6, 'hady', 'Zeitony', 7, 17);
 
 -- --------------------------------------------------------
 
@@ -85,7 +94,10 @@ INSERT INTO `users` (`userID`, `userName`, `userEmail`, `userPassword`, `userRol
 (1, 'saleh', 'saleh@gmail.com', '123456', 'admin'),
 (3, 'rami', 'rami@dell.com', '123456', 'teacher'),
 (4, 'alaa', 'alaa@gmail.com', '123321', 'parent'),
-(5, 'ameen', 'ameen@gmail.com', 'ameen123', 'teacher');
+(5, 'ameen', 'ameen@gmail.com', 'ameen123', 'teacher'),
+(15, 'ahmad', 'ahmad@gmail.com', '123456', 'admin'),
+(17, 'akram', 'akram@gmail.com', '123456', 'parent'),
+(18, 'nidal', 'nidal@gmail.com', '123456', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -95,7 +107,7 @@ INSERT INTO `users` (`userID`, `userName`, `userEmail`, `userPassword`, `userRol
 -- Indexes for table `assignments`
 --
 ALTER TABLE `assignments`
-  ADD KEY `teacher_assignment` (`assignmenInstructor`);
+  ADD PRIMARY KEY (`assignmentID`);
 
 --
 -- Indexes for table `courses`
@@ -108,7 +120,7 @@ ALTER TABLE `courses`
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD KEY `student_parent` (`studentParent`);
+  ADD PRIMARY KEY (`studentID`);
 
 --
 -- Indexes for table `users`
@@ -122,32 +134,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `assignments`
+--
+ALTER TABLE `assignments`
+  MODIFY `assignmentID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
   MODIFY `courseID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `assignments`
---
-ALTER TABLE `assignments`
-  ADD CONSTRAINT `teacher_assignment` FOREIGN KEY (`assignmenInstructor`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `students`
---
-ALTER TABLE `students`
-  ADD CONSTRAINT `student_parent` FOREIGN KEY (`studentParent`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

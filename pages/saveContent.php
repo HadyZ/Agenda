@@ -1,20 +1,19 @@
 <?php
 require_once 'connection.php';
 
-if ( isset( $_POST['studentId'] ) && isset( $_POST['fname'] ) && isset( $_POST['lname'] ) && isset( $_POST['pFname'] ) && isset( $_POST['pLname'] ) && isset( $_POST['pPhoneNumber'] ) && isset( $_POST['class'] ) )
- {
-    $id = $_POST['studentId'];
+if (isset($_POST['studentParentID']) && isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['class'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
-    $pFname = $_POST['pFname'];
-    $pLname = $_POST['pLname'];
-    $pNumber = $_POST['pPhoneNumber'];
     $class = $_POST['class'];
-    $studentParentId = 13456;
-    $sql_add_query = "INSERT INTO students (studentId, fname, lname, pPhoneNumber, class, studentParent) VALUES('$id','$fname','$lname','$pNumber','$class','$studentParentId')";
+    $studentParentId = $_POST['studentParentID'];
 
-    if ( mysqli_query( $con, $sql_add_query ) === FALSE ) die( 'Could not add the add student' );
+    $sql_add_query = "INSERT INTO students (studentFirstName,studentLastName, studentClass, studentParent) VALUES('$fname','$lname','$class',$studentParentId)";
 
+    if (mysqli_query($con, $sql_add_query)) {
+        header('location: dashboard.php?member=student');
+    } else {
+        die('Could not add the new student');
+    }
+} else {
+    header('location: dashboard.php?member=student');
 }
-
-?>
