@@ -29,7 +29,7 @@
             $_SESSION['userEmail'] = $u;
             $_SESSION['userPassword'] = $p;
             $_SESSION['userName'] = $row[1];
-            $_SESSION['userRole'] = $row[4];
+            $_SESSION['userRole'] = $row[5];
             $_SESSION['isRememberPass'] = $remember_pass;
 
             header('location: dashboard.php');

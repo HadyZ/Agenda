@@ -29,6 +29,7 @@
         }
     }
 
+
     // if(){
     //     setcookie('userName', "sassad");
     // setcookie('userEmail', "sadasfasfssf", time() + 2592000);
@@ -50,209 +51,20 @@
             </div>
 
             <div class="content-container col-md-10">
-                <div class="row">
+                <div class="row" id="mainContainer">
                     <div style="display: flex;flex:0.4">
                         <h2>Content</h2>
                     </div>
                     <div style="display: flex;flex:0.6;align-items: center; justify-content: flex-end;">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teacherForm">
-                            Add Assignment
+                        <button type="button" class="btn btn-primary"><a
+                                href="dashboard.php?member=add&subMember=teacher" class="button-add">Add Teacher</a>
                         </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTeacherForm">
-                            Add teacher
+                        <button type="button" class="btn btn-primary"><a
+                                href="dashboard.php?member=add&subMember=parent" class="button-add">Add Parent</a>
                         </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStudentForm">
-                            Add Student
+                        <button type="button" class="btn btn-primary"><a
+                                href="dashboard.php?member=add&subMember=student" class="button-add">Add Student</a>
                         </button>
-
-                        <div class="modal fade" id="addStudentForm" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">
-                                            Add Student
-                                        </h5>
-
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="saveContent.php" id="myform" method="POST">
-                                            <div class="form-group">
-                                                <label for="fname">First Name:</label>
-                                                <input type="text" class="form-control" name="fname"
-                                                    placeholder="Enter First Name" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="lname">Last Name:</label>
-                                                <input type="text" class="form-control" name="lname"
-                                                    placeholder="Enter Last Name" />
-                                            </div>
-                                            <?php
-
-                                            require "connection.php";
-
-                                            $sql = "SELECT userID,userName FROM users where userRole='parent'";
-
-                                            $result = mysqli_query($con, $sql);
-
-                                            echo "
-                                            <div class='form-group'>
-                                                <label for='studentParentID'>Parent:</label>
-                                                <select class='form-control' name='studentParentID'>";
-                                            while ($row = mysqli_fetch_array($result)) {
-                                                echo "<option value=" . $row['userID'] . "> " . $row['userName'] . "</option>";
-                                            }
-                                            echo "</select></div>";
-
-                                            ?>
-                                            <div class="form-group">
-                                                <label for="class">Class:</label>
-                                                <select class='form-control' name="class">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                </select>
-                                            </div>
-
-
-                                            <button type="submit" class="btn btn-primary">
-                                                Submit
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="modal fade" id="addTeacherForm" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">
-                                            Add Teacher
-                                        </h5>
-
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">First Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter First Name" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Last Name:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter Last Name" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter Email" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Password:</label>
-                                                <input type="text" class="form-control" id="description"
-                                                    placeholder="Enter Password" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Class:</label>
-                                                <select multiple class="form-control" id="courseSelect">
-                                                    <option>One</option>
-                                                    <option>Two</option>
-                                                    <option>Three</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Course:</label>
-                                                <select multiple class="form-control" id="courseSelect">
-                                                    <option>English</option>
-                                                    <option>Math</option>
-                                                    <option>Arabic</option>
-                                                </select>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">
-                                                Submit
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="teacherForm" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">
-                                            Assignment
-                                        </h5>
-
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Name:</label>
-                                                <input type="text" disabled class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter Title" value="Teacher Name" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Title:</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                                    placeholder="Enter Title" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Description:</label>
-                                                <textarea type="text" class="form-control" id="description"
-                                                    placeholder="Description"></textarea>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Course:</label>
-                                                <select class="form-control" id="courseSelect">
-                                                    <option>English</option>
-                                                    <option>Math</option>
-                                                    <option>Arabic</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Class:</label>
-                                                <select class="form-control" id="sectionSelect">
-                                                    <option>One</option>
-                                                    <option>Two</option>
-                                                    <option>Three</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group ">
-                                                <label for="exampleInputPassword1">Date:</label>
-
-                                                <input type="date" class="form-control" id="datepicker" />
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">
-                                                Submit
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -269,17 +81,28 @@
 
                 if (isset($_GET['member'])) {
                     $member = $_GET['member'];
-                    runMyFunction($member);
+                    if ($_GET['member'] == 'add') {
+                        echo "<script>
+                        var main=document.getElementById('mainContainer');
+                        main.style.display = 'none';
+                        </script>";
+                    }
+                    if (isset($_GET['subMember'])) {
+                        $subMember = $_GET['subMember'];
+                    } else {
+                        $subMember = "";
+                    }
+                    runMyFunction($member, $subMember);
                 } else {
-                    if ($_SESSION["userRole"] == "admin")
+
+                    if ($_SESSION["userRole"] == "admin") {
                         runMyFunction("teacher");
-                    else runMyFunction("assignment");
+                    } else runMyFunction("assignment");
                 }
 
-                function runMyFunction($member)
+                function runMyFunction($member, $subMember = "")
                 {
                     require("connection.php");
-
 
                     if (isset($_SESSION['is_logged_in'])) {
                         if ($_SESSION['is_logged_in'] == 1) {
@@ -287,7 +110,7 @@
 
                             switch ($member) {
                                 case 'teacher':
-                                    $query = "SELECT * FROM users where userRole='$member'";
+                                    $query = "SELECT * FROM users where userRole='teacher'";
                                     $result = mysqli_query($con, $query);
                                     $r = mysqli_num_rows($result);
 
@@ -296,7 +119,11 @@
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary'>Edit</button> </td></tr>";
+
+
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary' >";
+                                        echo '<a href=dashboard.php?member=teacher&memberID=' . $row[0] . '>Link text</a>';
+                                        echo "</button></td></tr>";
                                     }
                                     echo "</tbody></table>";
 
@@ -346,9 +173,147 @@
                                     echo "</tbody></table>";
                                     break;
                                 case 'logout':
-                                    // session_unset();
-                                    // session_destroy();
+                                    session_unset();
+                                    session_destroy();
                                     echo "<script> location.replace('login.php') </script>";
+                                    break;
+                                case 'add':
+                                    if ($subMember == 'student') {
+                                        echo "<div class='container'>";
+                                        echo "<div class='row'>";
+                                        echo "<div class='col-md'>";
+                                        echo "<h2>";
+                                        echo  "Add Student";
+                                        echo "</h2>";
+
+                                        echo "<div class='row'>";
+                                        echo "<form action='saveContent.php?saveMember=student' id='myform' method='POST' class='col-md'> ";
+                                        echo "<div class='form-group'>";
+                                        echo "<label for='fname'>First Name:</label>";
+                                        echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' /> </div> ";
+                                        echo "<div class='form-group'>";
+                                        echo "<label for='lname';>Last Name:</label>";
+                                        echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' />";
+                                        echo "</div>";
+                                        echo "</div>";
+
+
+                                        require "connection.php";
+
+                                        $sql = "SELECT userID,userName FROM users where userRole='parent'";
+
+                                        echo "<div class='form-group'>";
+                                        echo "<label for='studentParentID'>Parent:</label>";
+                                        echo "<select class='form-control' placeholer='Select Parent' name='studentParentID'>";
+                                        while ($row = mysqli_fetch_array($result)) {
+                                            echo "<option value=" . $row['userID'] . "> " . $row['userName'] . "</option>";
+                                        }
+                                        echo "</select></div>";
+
+
+                                        echo "<div class='form-group'>";
+                                        echo "<label for='class'>Class:</label>";
+                                        echo "<select class='form-control' name='class'>";
+                                        echo "<option value='1'>1</option>";
+                                        echo "<option value='2'>2</option>";
+                                        echo "<option value='3'>3</option>";
+                                        echo "<option value='4'>4</option>";
+                                        echo "<option value='5'>5</option>";
+                                        echo "<option value='6'>6</option>";
+                                        echo "<option value='7'>7</option>";
+                                        echo "<option value='8'>8</option>";
+                                        echo "<option value='9'>9</option>";
+                                        echo "</select>";
+                                        echo "</div>";
+                                        echo "<button type='submit' class='btn btn-primary'>";
+                                        echo "Submit";
+                                        echo "</button>";
+                                        echo "</form>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                    } else {
+                                        if ($subMember == "teacher") {
+                                            echo "<div class='container'>";
+                                            echo "<div class='row'>";
+                                            echo "<div class='col-md'>";
+                                            echo "<h2>";
+                                            echo  "Add Teacher";
+                                            echo "</h2>";
+
+                                            echo "<div class='row'>";
+                                            echo "<form action='saveContent.php?saveMember=teacher' id='myform' method='POST' class='col-md'> ";
+                                            echo "<div class='form-group'>";
+                                            echo "<label for='fname'>First Name:</label>";
+                                            echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' />";
+                                            echo "</div>";
+                                            echo "<div class='form-group'>";
+                                            echo "<label for='lname';>Last Name:</label>";
+                                            echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' />";
+                                            echo "</div>";
+                                            echo "<div class='form-group'>";
+                                            echo "<label for='lname';>Email:</label>";
+                                            echo "<input type='text' class='form-control' name='ename' placeholder='Enter Email' />";
+                                            echo "</div>";
+                                            echo "<div class='form-group'>";
+                                            echo "<label for='lname';>Password:</label>";
+                                            echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' />";
+                                            echo "</div>";
+
+                                            echo "</div>";
+
+                                            echo "<button type='submit' class='btn btn-primary'>";
+                                            echo "Submit";
+                                            echo "</button>";
+                                            echo "<button type='button' class='btn'>";
+                                            echo "Cancel";
+                                            echo "</button>";
+                                            echo "</form>";
+                                            echo "</div>";
+                                            echo "</div>";
+                                            echo "</div>";
+                                        } else {
+                                            if ($subMember == "parent") {
+                                                echo "<div class='container'>";
+                                                echo "<div class='row'>";
+                                                echo "<div class='col-md'>";
+                                                echo "<h2>";
+                                                echo  "Add Parent";
+                                                echo "</h2>";
+
+                                                echo "<div class='row'>";
+                                                echo "<form action='saveContent.php?saveMember=parent' id='myform' method='POST' class='col-md'> ";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='fname'>First Name:</label>";
+                                                echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' />";
+                                                echo "</div>";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='lname';>Last Name:</label>";
+                                                echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' />";
+                                                echo "</div>";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='lname';>Email:</label>";
+                                                echo "<input type='text' class='form-control' name='ename' placeholder='Enter Email' />";
+                                                echo "</div>";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='lname';>Password:</label>";
+                                                echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' />";
+                                                echo "</div>";
+
+                                                echo "</div>";
+
+                                                echo "<button type='submit' class='btn btn-primary'>";
+                                                echo "Submit";
+                                                echo "</button>";
+                                                echo "</form>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                            }
+                                        }
+                                    }
+
+
                                     break;
                                 default:
                                     break;
@@ -359,6 +324,13 @@
                         // session_destroy();
                         echo "<script> location.replace('login.php') </script>";
                     }
+                }
+
+                function editMember($m, $mID)
+                {
+                    print_r($m);
+                    print_r($mID);
+                    // echo "<script> location.replace('login.php?editMember='$mID) </script>";
                 }
 
                 function onDeleteRow()

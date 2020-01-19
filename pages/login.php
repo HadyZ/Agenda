@@ -55,8 +55,12 @@ and open the template in the editor.
 
                 <form class="sign-up-htm" action="register_validate.php" id="myform" method="POST">
                     <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="username" name="name" type="text" class="input">
+                        <label for="user" class="label">First Name</label>
+                        <input id="username" name="fname" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="user" class="label">Last Name</label>
+                        <input id="username" name="lname" type="text" class="input">
                     </div>
                     <div class="group">
                         <label for="user" class="label">Email</label>
@@ -73,10 +77,10 @@ and open the template in the editor.
                     <div class="group">
                         <input type="submit" class="button" value="Sign Up">
                     </div>
-                    <div class="hr-sign-up"></div>
+                    <!-- <div class="hr-sign-up"></div>
                     <div class="foot-lnk">
                         <label for="tab-1" class="already-member">Already Member?</a>
-                    </div>
+                    </div> -->
                 </form>
 
 

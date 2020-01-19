@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2020 at 11:53 PM
+-- Generation Time: Jan 19, 2020 at 10:28 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -70,8 +70,7 @@ INSERT INTO `students` (`studentID`, `studentFirstName`, `studentLastName`, `stu
 (1, 'saleh', 'fakhr', 1, 4),
 (3, 'rami', 'fakhr', 3, 17),
 (5, 'ameen', 'halabi', 6, 17),
-(6, 'hady', 'Zeitony', 7, 17),
-(7, 'qwfqw', 'asassas', 1, 4);
+(6, 'hady', 'Zeitony', 7, 17);
 
 -- --------------------------------------------------------
 
@@ -81,8 +80,7 @@ INSERT INTO `students` (`studentID`, `studentFirstName`, `studentLastName`, `stu
 
 CREATE TABLE `users` (
   `userID` int(11) NOT NULL,
-  `userFirstName` varchar(100) NOT NULL,
-  `userLastName` varchar(50) NOT NULL,
+  `userName` varchar(100) NOT NULL,
   `userEmail` varchar(100) NOT NULL,
   `userPassword` varchar(100) NOT NULL,
   `userRole` varchar(50) NOT NULL
@@ -92,17 +90,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `userFirstName`, `userLastName`, `userEmail`, `userPassword`, `userRole`) VALUES
-(1, 'saleh', 'fakhr', 'saleh@gmail.com', '123456', 'admin'),
-(3, 'rami', 'fakhr', 'rami@dell.com', '123456', 'teacher'),
-(4, 'alaa', '', 'alaa@gmail.com', '123321', 'parent'),
-(5, 'ameen', '', 'ameen@gmail.com', 'ameen123', 'teacher'),
-(15, 'ahmad', '', 'ahmad@gmail.com', '123456', 'admin'),
-(17, 'akram', '', 'akram@gmail.com', '123456', 'parent'),
-(18, 'nidal', '', 'nidal@gmail.com', '123456', 'admin'),
-(19, 'new', 'test', 'new@gmail.com', '123456', 'admin'),
-(20, 'newTeacher', 'teacher', 'teacher@gmail.com', '123456', 'teacher'),
-(21, 'newtest', 'test teacher', 'teachertest@gmail.com', '123456', 'teacher');
+INSERT INTO `users` (`userID`, `userName`, `userEmail`, `userPassword`, `userRole`) VALUES
+(1, 'saleh', 'saleh@gmail.com', '123456', 'admin'),
+(3, 'rami', 'rami@dell.com', '123456', 'teacher'),
+(4, 'alaa', 'alaa@gmail.com', '123321', 'parent'),
+(5, 'ameen', 'ameen@gmail.com', 'ameen123', 'teacher'),
+(15, 'ahmad', 'ahmad@gmail.com', '123456', 'admin'),
+(17, 'akram', 'akram@gmail.com', '123456', 'parent'),
+(18, 'nidal', 'nidal@gmail.com', '123456', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -154,13 +149,13 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
