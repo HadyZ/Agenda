@@ -77,4 +77,5 @@
     height: 2.5em !important;
     margin-left: 1em !important;
     width: 10em !important;
+    outline: unset;
 }

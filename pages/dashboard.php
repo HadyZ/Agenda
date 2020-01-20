@@ -115,15 +115,11 @@
                                     $r = mysqli_num_rows($result);
 
                                     echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Action</th></tr></thead><tbody>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Edit</th><th scope='col'>Delete</th></tr></thead><tbody>";
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-
-
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary' >";
-                                        echo '<a href=dashboard.php?member=teacher&memberID=' . $row[0] . '>Link text</a>';
-                                        echo "</button></td></tr>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Edit</button> </td><td><button class='btn btn-danger' >Delete</button></td></tr>";
                                     }
                                     echo "</tbody></table>";
 
@@ -134,11 +130,11 @@
                                     $r = mysqli_num_rows($result);
 
                                     echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Action</th></tr></thead><tbody>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Edit</th><th scope='col'>Delete</th></tr></thead><tbody>";
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary'>Edit</button> </td></tr>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Edit</button> </td><td><button class='btn btn-danger' >Delete</button></td></tr>";
                                     }
                                     echo "</tbody></table>";
 
@@ -149,11 +145,11 @@
                                     $r = mysqli_num_rows($result);
 
                                     echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Action</th></tr></thead><tbody>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Edit</th><th scope='col'>Delete</th></tr></thead><tbody>";
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary'>Edit</button> </td></tr>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Edit</button> </td><td><button class='btn btn-danger' >Delete</button></td></tr>";
                                     }
                                     echo "</tbody></table>";
 
@@ -164,11 +160,11 @@
                                     $r = mysqli_num_rows($result);
 
                                     echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Action</th></tr></thead><tbody>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Edit</th><th scope='col'>Delete</th></tr></thead><tbody>";
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> <button class='btn btn-primary'>Edit</button> </td></tr>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Edit</button> </td><td><button class='btn btn-danger' >Delete</button></td></tr>";
                                     }
                                     echo "</tbody></table>";
                                     break;
