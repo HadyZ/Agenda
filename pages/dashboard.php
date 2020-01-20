@@ -81,7 +81,7 @@
 
                 if (isset($_GET['member'])) {
                     $member = $_GET['member'];
-                    if ($_GET['member'] == 'add') {
+                    if ($_GET['member'] == 'add' || $_GET['member'] == 'edit') {
                         echo "<script>
                         var main=document.getElementById('mainContainer');
                         main.style.display = 'none';
@@ -92,7 +92,12 @@
                     } else {
                         $subMember = "";
                     }
-                    runMyFunction($member, $subMember);
+                    if (isset($_GET['memberID'])) {
+                        $memberID = $_GET['memberID'];
+                    } else {
+                        $memberID = "";
+                    }
+                    runMyFunction($member, $subMember, $memberID);
                 } else {
 
                     if ($_SESSION["userRole"] == "admin") {
@@ -100,7 +105,7 @@
                     } else runMyFunction("assignment");
                 }
 
-                function runMyFunction($member, $subMember = "")
+                function runMyFunction($member, $subMember = "", $memberID = "")
                 {
                     require("connection.php");
 
@@ -115,11 +120,13 @@
                                     $r = mysqli_num_rows($result);
 
                                     echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Edit</th><th scope='col'>Delete</th></tr></thead><tbody>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Delete</th><th scope='col'>Edit</th></tr></thead><tbody>";
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Edit</button> </td><td><button class='btn btn-danger' >Delete</button></td></tr>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button></rd><td> <button class='btn btn-primary' >";
+                                        echo '<a  href=dashboard.php?member=edit&subMember=teacher&memberID=' . $row[0] . '>Edit</a>';
+                                        echo "</button></td></tr>";
                                     }
                                     echo "</tbody></table>";
 
@@ -130,11 +137,13 @@
                                     $r = mysqli_num_rows($result);
 
                                     echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Edit</th><th scope='col'>Delete</th></tr></thead><tbody>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Delete</th><th scope='col'>Edit</th></tr></thead><tbody>";
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Edit</button> </td><td><button class='btn btn-danger' >Delete</button></td></tr>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> </td><td><button class='btn btn-primary'>";
+                                        echo '<a  href=dashboard.php?member=edit&subMember=parent&memberID=' . $row[0] . '>Edit</a>';
+                                        echo "</button> </td></tr>";
                                     }
                                     echo "</tbody></table>";
 
@@ -145,11 +154,13 @@
                                     $r = mysqli_num_rows($result);
 
                                     echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Edit</th><th scope='col'>Delete</th></tr></thead><tbody>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Delete</th><th scope='col'>Edit</th></tr></thead><tbody>";
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Edit</button> </td><td><button class='btn btn-danger' >Delete</button></td></tr>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> </td><td><button class='btn btn-primary'>";
+                                        echo '<a  href=dashboard.php?member=edit&subMember=student&memberID=' . $row[0] . '>Edit</a>';
+                                        echo "</button> </td></tr>";
                                     }
                                     echo "</tbody></table>";
 
@@ -160,11 +171,11 @@
                                     $r = mysqli_num_rows($result);
 
                                     echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Edit</th><th scope='col'>Delete</th></tr></thead><tbody>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Delete</th><th scope='col'>Edit</th></tr></thead><tbody>";
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Edit</button> </td><td><button class='btn btn-danger' >Delete</button></td></tr>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Delete</button> </td><td><button class='btn btn-danger' >Edit</button></td></tr>";
                                     }
                                     echo "</tbody></table>";
                                     break;
@@ -196,13 +207,16 @@
 
                                         require "connection.php";
 
-                                        $sql = "SELECT userID,userName FROM users where userRole='parent'";
+
+                                        $sqlS = "SELECT userID,userFirstName FROM users where userRole='parent'";
+                                        $resultS = mysqli_query($con, $sqlS);
+
 
                                         echo "<div class='form-group'>";
                                         echo "<label for='studentParentID'>Parent:</label>";
-                                        echo "<select class='form-control' placeholer='Select Parent' name='studentParentID'>";
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo "<option value=" . $row['userID'] . "> " . $row['userName'] . "</option>";
+                                        echo "<select class='form-control' placeholder='Select Parent' name='studentParentID'>";
+                                        while ($rowS = mysqli_fetch_array($resultS)) {
+                                            echo "<option value=" . $rowS['userID'] . "> " . $rowS['userFirstName'] . "</option>";
                                         }
                                         echo "</select></div>";
 
@@ -293,6 +307,168 @@
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
                                                 echo "<label for='lname';>Password:</label>";
+                                                echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' />";
+                                                echo "</div>";
+
+                                                echo "</div>";
+
+                                                echo "<button type='submit' class='btn btn-primary'>";
+                                                echo "Submit";
+                                                echo "</button>";
+                                                echo "</form>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case 'edit':
+                                    if ($subMember == 'student') {
+                                        require "connection.php";
+
+                                        $sql = "SELECT * FROM students where studentID=$memberID";
+
+                                        $result = mysqli_query($con, $sql);
+                                        $row = mysqli_fetch_row($result);
+
+
+                                        echo "<div class='container'>";
+                                        echo "<div class='row'>";
+                                        echo "<div class='col-md'>";
+                                        echo "<h2>";
+                                        echo  "Edit Student";
+                                        echo "</h2>";
+
+                                        echo "<div class='row'>";
+                                        echo "<form action='saveContent.php?saveMember=student' id='myform' method='POST' class='col-md'> ";
+                                        echo "<input type='text' class='display-none' name='id' value='$row[0]'/>";
+                                        echo "<div class='form-group'>";
+                                        echo "<label for='fname'>First Name:</label>";
+                                        echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' value='$row[1]' /> </div> ";
+                                        echo "<div class='form-group'>";
+                                        echo "<label for='lname';>Last Name:</label>";
+                                        echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' value='$row[2]'/>";
+                                        echo "</div>";
+                                        echo "</div>";
+
+
+                                        require "connection.php";
+
+                                        $sqlS = "SELECT userID,userFirstName FROM users where userRole='parent'";
+                                        $resultS = mysqli_query($con, $sqlS);
+
+                                        echo "<div class='form-group'>";
+                                        echo "<label for='studentParentID'>Parent:</label>";
+                                        echo "<select class='form-control' placeholder='Select Parent' name='studentParentID' value='$row[4]'>";
+                                        while ($rowS = mysqli_fetch_array($resultS)) {
+                                            echo "<option value=" . $rowS['userID'] . "> " . $rowS['userFirstName'] . "</option>";
+                                        }
+                                        echo "</select></div>";
+
+
+                                        echo "<div class='form-group'>";
+                                        echo "<label for='class'>Class:</label>";
+                                        echo "<select class='form-control' name='class' value='$row[3]'>";
+                                        echo "<option value='1'>1</option>";
+                                        echo "<option value='2'>2</option>";
+                                        echo "<option value='3'>3</option>";
+                                        echo "<option value='4'>4</option>";
+                                        echo "<option value='5'>5</option>";
+                                        echo "<option value='6'>6</option>";
+                                        echo "<option value='7'>7</option>";
+                                        echo "<option value='8'>8</option>";
+                                        echo "<option value='9'>9</option>";
+                                        echo "</select>";
+                                        echo "</div>";
+                                        echo "<button type='submit' class='btn btn-primary'>";
+                                        echo "Submit";
+                                        echo "</button>";
+                                        echo "</form>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                    } else {
+                                        if ($subMember == "teacher") {
+                                            require "connection.php";
+
+                                            $sql = "SELECT * FROM users where userID=$memberID";
+                                            $result = mysqli_query($con, $sql);
+                                            $row = mysqli_fetch_row($result);
+
+                                            echo "<div class='container'>";
+                                            echo "<div class='row'>";
+                                            echo "<div class='col-md'>";
+                                            echo "<h2>";
+                                            echo  "Edit Teacher";
+                                            echo "</h2>";
+
+                                            echo "<div class='row'>";
+                                            echo "<form action='updateContent.php?updateMember=teacher' id='myform' method='POST' class='col-md'> ";
+                                            echo "<input type='text' class='display-none' name='id' value='$row[0]'/>";
+                                            echo "<div class='form-group'>";
+                                            echo "<label for='fname'>First Name:</label>";
+                                            echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name'  value='$row[1]'/>";
+                                            echo "</div>";
+                                            echo "<div class='form-group'>";
+                                            echo "<label for='lname';>Last Name:</label>";
+                                            echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' value='$row[2]' />";
+                                            echo "</div>";
+                                            echo "<div class='form-group'>";
+                                            echo "<label for='ename';>Email:</label>";
+                                            echo "<input type='text' class='form-control' name='ename' placeholder='Enter Email' value='$row[3]'/>";
+                                            echo "</div>";
+                                            echo "<div class='form-group'>";
+                                            echo "<label for='pass';>Password:</label>";
+                                            echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' value='$row[4]' />";
+                                            echo "</div>";
+
+                                            echo "</div>";
+
+                                            echo "<button type='submit' class='btn btn-primary'>";
+                                            echo "Update";
+                                            echo "</button>";
+                                            echo "<button type='button' class='btn'>";
+                                            echo "Cancel";
+                                            echo "</button>";
+                                            echo "</form>";
+                                            echo "</div>";
+                                            echo "</div>";
+                                            echo "</div>";
+                                        } else {
+                                            if ($subMember == "parent") {
+                                                require "connection.php";
+
+                                                $sql = "SELECT * FROM users where userID=$memberID";
+
+                                                $result = mysqli_query($con, $query);
+
+
+
+                                                echo "<div class='container'>";
+                                                echo "<div class='row'>";
+                                                echo "<div class='col-md'>";
+                                                echo "<h2>";
+                                                echo  "Edit Parent";
+                                                echo "</h2>";
+
+                                                echo "<div class='row'>";
+                                                echo "<form action='saveContent.php?saveMember=parent' id='myform' method='POST' class='col-md'> ";
+                                                echo "<input type='text' class='display-none' name='id' value='$row[0]'/>";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='fname'>First Name:</label>";
+                                                echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' />";
+                                                echo "</div>";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='lname';>Last Name:</label>";
+                                                echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' />";
+                                                echo "</div>";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='ename';>Email:</label>";
+                                                echo "<input type='text' class='form-control' name='ename' placeholder='Enter Email' />";
+                                                echo "</div>";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='pass';>Password:</label>";
                                                 echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' />";
                                                 echo "</div>";
 
