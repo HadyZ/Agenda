@@ -7,7 +7,13 @@
 
 <body>
     <div class="header-container">
-      <div class="header  bg-secondary"> <h1 class="colorWhite">Student Agenda</h1>
+      <div class="header  bg-secondary">
+          <div class="user-details-container"> 
+            <span class="user-name">
+              Email:  <?php    session_start();  if(isset($_SESSION['userEmail'])){ echo $_SESSION['userEmail'];}?>
+            </span>
+          </div>
+      <h1 class="colorWhite">Student Agenda</h1>
            <div class="logout-button">
             <button type="button" class="btn btn-primary button-logout">
             <a href="parent.php?user=logout">Logout</a>
@@ -22,10 +28,8 @@
 
             <div class="form-group">
                 <?php
-                session_start();
                 require "connection.php";
-
-                
+ 
                 if(isset($_SESSION['userId'])){
                     $userID = $_SESSION['userId'];
                     $sql = "SELECT studentID,studentFirstName FROM students where studentParent= $userID";
