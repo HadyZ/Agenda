@@ -65,6 +65,9 @@
                         <button type="button" class="btn btn-primary"><a
                                 href="dashboard.php?member=add&subMember=student" class="button-add">Add Student</a>
                         </button>
+                        <button type="button" class="btn btn-primary"><a
+                                href="dashboard.php?member=add&subMember=assignment" class="button-add">Add Homework</a>
+                        </button>
                     </div>
 
                 </div>
@@ -112,7 +115,7 @@
                     if (isset($_SESSION['is_logged_in'])) {
                         if ($_SESSION['is_logged_in'] == 1) {
 
-
+                            $userID = $_SESSION['userId'];
                             switch ($member) {
                                 case 'teacher':
                                     $query = "SELECT * FROM users where userRole='teacher'";
@@ -148,6 +151,30 @@
                                     echo "</tbody></table>";
 
                                     break;
+                                case 'assignment':
+                                    if ($_SESSION['userRole'] == "teacher") {
+                                        $query = "SELECT * FROM assignments where assignmentInstructor=$userID";
+                                    } else {
+                                        $query = "SELECT * FROM assignments";
+                                    }
+
+                                    $result = mysqli_query($con, $query);
+
+                                    echo "<table class='table table-striped'><thead> <tr>";
+                                    echo "<th scope='col'>#</th>  <th scope='col'>Date</th><th scope='col'>Description</th><th scope='col'>Delete</th><th scope='col'>Edit</th></tr></thead><tbody>";
+                                    if (mysqli_num_rows($result) > 0) {
+                                        while ($row = mysqli_fetch_row($result)) {
+
+
+                                            echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[3] </td><td><button class='btn btn-danger' >Delete</button> </td><td><button class='btn btn-primary'>";
+                                            echo '<a  href=dashboard.php?member=edit&subMember=editAssignment&memberID=' . $row[0] . '>Edit</a>';
+                                            echo "</button> </td></tr>";
+                                        }
+                                    }
+
+                                    echo "</tbody></table>";
+
+                                    break;
                                 case 'student':
                                     $query = "SELECT * FROM students";
                                     $result = mysqli_query($con, $query);
@@ -164,20 +191,6 @@
                                     }
                                     echo "</tbody></table>";
 
-                                    break;
-                                case 'assignment':
-                                    $query = "SELECT * FROM assignments";
-                                    $result = mysqli_query($con, $query);
-                                    $r = mysqli_num_rows($result);
-
-                                    echo "<table class='table table-striped'><thead> <tr>";
-                                    echo "<th scope='col'>#</th>  <th scope='col'>First</th><th scope='col'>Last</th><th scope='col'>Delete</th><th scope='col'>Edit</th></tr></thead><tbody>";
-                                    for ($j = 0; $j < $r; $j++) {
-                                        $row = mysqli_fetch_row($result);
-
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td> <button class='btn btn-primary'>Delete</button> </td><td><button class='btn btn-danger' >Edit</button></td></tr>";
-                                    }
-                                    echo "</tbody></table>";
                                     break;
                                 case 'logout':
                                     session_unset();
@@ -199,7 +212,7 @@
                                         echo "<label for='fname'>First Name:</label>";
                                         echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' /> </div> ";
                                         echo "<div class='form-group'>";
-                                        echo "<label for='lname';>Last Name:</label>";
+                                        echo "<label for='lname'>Last Name:</label>";
                                         echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' />";
                                         echo "</div>";
                                         echo "</div>";
@@ -238,6 +251,9 @@
                                         echo "<button type='submit' class='btn btn-primary'>";
                                         echo "Submit";
                                         echo "</button>";
+                                        echo "<button type='button' class='btn btn-cancel'>";
+                                        echo '<a  href=dashboard.php?member=student>Cancel</a>';
+                                        echo "</button>";
                                         echo "</form>";
                                         echo "</div>";
                                         echo "</div>";
@@ -258,15 +274,15 @@
                                             echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' />";
                                             echo "</div>";
                                             echo "<div class='form-group'>";
-                                            echo "<label for='lname';>Last Name:</label>";
+                                            echo "<label for='lname'>Last Name:</label>";
                                             echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' />";
                                             echo "</div>";
                                             echo "<div class='form-group'>";
-                                            echo "<label for='lname';>Email:</label>";
+                                            echo "<label for='lname'>Email:</label>";
                                             echo "<input type='text' class='form-control' name='ename' placeholder='Enter Email' />";
                                             echo "</div>";
                                             echo "<div class='form-group'>";
-                                            echo "<label for='lname';>Password:</label>";
+                                            echo "<label for='lname'>Password:</label>";
                                             echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' />";
                                             echo "</div>";
 
@@ -275,8 +291,8 @@
                                             echo "<button type='submit' class='btn btn-primary'>";
                                             echo "Submit";
                                             echo "</button>";
-                                            echo "<button type='button' class='btn'>";
-                                            echo "Cancel";
+                                            echo "<button type='button' class='btn btn-cancel'>";
+                                            echo '<a  href=dashboard.php?member=teacher>Cancel</a>';
                                             echo "</button>";
                                             echo "</form>";
                                             echo "</div>";
@@ -298,15 +314,15 @@
                                                 echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' />";
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
-                                                echo "<label for='lname';>Last Name:</label>";
+                                                echo "<label for='lname'>Last Name:</label>";
                                                 echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' />";
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
-                                                echo "<label for='lname';>Email:</label>";
+                                                echo "<label for='lname'>Email:</label>";
                                                 echo "<input type='text' class='form-control' name='ename' placeholder='Enter Email' />";
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
-                                                echo "<label for='lname';>Password:</label>";
+                                                echo "<label for='lname'>Password:</label>";
                                                 echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' />";
                                                 echo "</div>";
 
@@ -314,6 +330,81 @@
 
                                                 echo "<button type='submit' class='btn btn-primary'>";
                                                 echo "Submit";
+                                                echo "</button>";
+                                                echo "<button type='button' class='btn btn-cancel'>";
+                                                echo '<a  href=dashboard.php?member=parent>Cancel</a>';
+                                                echo "</button>";
+                                                echo "</form>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                            }
+                                            if ($subMember == "assignment") {
+                                                echo "<div class='container'>";
+                                                echo "<div class='row'>";
+                                                echo "<div class='col-md'>";
+                                                echo "<h2>";
+                                                echo  "Add Homework";
+                                                echo "</h2>";
+
+                                                echo "<div class='row'>";
+                                                echo "<form action='saveContent.php?saveMember=assignment' id='myform' method='POST' class='col-md'> ";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='assignmentDate'>Date:</label>";
+                                                echo "<input type='date' name='assignmentDate' class='form-control' />";
+                                                echo "</div>";
+
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='assignmentDesc'>Description:</label>";
+                                                echo "<input type='text' name='assignmentDesc' class='form-control' />";
+                                                echo "</div>";
+
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='teacherID'>Teacher:</label>";
+
+                                                $sqlH = "SELECT userID,userFirstName FROM users where userRole='teacher'";
+                                                $resultH = mysqli_query($con, $sqlH);
+
+                                                echo "<select class='form-control' placeholder='Select Teacher' name='teacherID'>";
+                                                while ($rowH = mysqli_fetch_array($resultH)) {
+                                                    echo "<option value=" . $rowH['userID'] . "> " . $rowH['userFirstName'] . "</option>";
+                                                }
+                                                echo "</select>";
+                                                echo "</div>";
+
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='class'>Class:</label>";
+                                                echo "<select class='form-control' name='class'>";
+                                                echo "<option value='1'>1</option>";
+                                                echo "<option value='2'>2</option>";
+                                                echo "<option value='3'>3</option>";
+                                                echo "<option value='4'>4</option>";
+                                                echo "<option value='5'>5</option>";
+                                                echo "<option value='6'>6</option>";
+                                                echo "<option value='7'>7</option>";
+                                                echo "<option value='8'>8</option>";
+                                                echo "<option value='9'>9</option>";
+                                                echo "</select>";
+                                                echo "</div>";
+
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='courseID'>Course:</label>";
+
+                                                $sqlH = "SELECT courseID,courseName FROM courses";
+                                                $resultH = mysqli_query($con, $sqlH);
+
+                                                echo "<select class='form-control' placeholder='Select Teacher' name='courseID'>";
+                                                while ($rowH = mysqli_fetch_array($resultH)) {
+                                                    echo "<option value=" . $rowH['courseID'] . "> " . $rowH['courseName'] . "</option>";
+                                                }
+                                                echo "</select>";
+                                                echo "</div>";
+
+                                                echo "<button type='submit' class='btn btn-primary'>";
+                                                echo "Submit";
+                                                echo "</button>";
+                                                echo "<button type='button' class='btn btn-cancel'>";
+                                                echo '<a  href=dashboard.php?member=assignment>Cancel</a>';
                                                 echo "</button>";
                                                 echo "</form>";
                                                 echo "</div>";
@@ -347,7 +438,7 @@
                                         echo "<label for='fname'>First Name:</label>";
                                         echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' value='$row[1]' /> </div> ";
                                         echo "<div class='form-group'>";
-                                        echo "<label for='lname';>Last Name:</label>";
+                                        echo "<label for='lname'>Last Name:</label>";
                                         echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' value='$row[2]'/>";
                                         echo "</div>";
                                         echo "</div>";
@@ -384,6 +475,9 @@
                                         echo "<button type='submit' class='btn btn-primary'>";
                                         echo "Submit";
                                         echo "</button>";
+                                        echo "<button type='button' class='btn btn-cancel'>";
+                                        echo '<a href=dashboard.php?member=student>Cancel</a>';
+                                        echo "</button>";
                                         echo "</form>";
                                         echo "</div>";
                                         echo "</div>";
@@ -411,7 +505,7 @@
                                             echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name'  value='$row[1]'/>";
                                             echo "</div>";
                                             echo "<div class='form-group'>";
-                                            echo "<label for='lname';>Last Name:</label>";
+                                            echo "<label for='lname'>Last Name:</label>";
                                             echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' value='$row[2]' />";
                                             echo "</div>";
                                             echo "<div class='form-group'>";
@@ -428,8 +522,8 @@
                                             echo "<button type='submit' class='btn btn-primary'>";
                                             echo "Update";
                                             echo "</button>";
-                                            echo "<button type='button' class='btn'>";
-                                            echo "Cancel";
+                                            echo "<button type='button' class='btn btn-cancel '>";
+                                            echo '<a  href=dashboard.php?member=teacher>Cancel</a>';
                                             echo "</button>";
                                             echo "</form>";
                                             echo "</div>";
@@ -442,9 +536,6 @@
                                                 $sql = "SELECT * FROM users where userID=$memberID";
                                                 $result = mysqli_query($con, $sql);
                                                 $row = mysqli_fetch_row($result);
-
-
-
 
                                                 echo "<div class='container'>";
                                                 echo "<div class='row'>";
@@ -461,7 +552,7 @@
                                                 echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' value='$row[1]'/>";
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
-                                                echo "<label for='lname';>Last Name:</label>";
+                                                echo "<label for='lname'>Last Name:</label>";
                                                 echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' value='$row[2]'/>";
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
@@ -476,7 +567,88 @@
                                                 echo "</div>";
 
                                                 echo "<button type='submit' class='btn btn-primary'>";
-                                                echo "Submit";
+                                                echo "Update";
+                                                echo "</button>";
+                                                echo "<button type='button' class='btn btn-cancel'>";
+                                                echo '<a  href=dashboard.php?member=parent>Cancel</a>';
+                                                echo "</button>";
+                                                echo "</form>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                                echo "</div>";
+                                            }
+                                            if ($subMember == "editAssignment") {
+                                                require "connection.php";
+
+                                                $sql = "SELECT * FROM assignments where assignmentID=$memberID";
+                                                $result = mysqli_query($con, $sql);
+                                                $row = mysqli_fetch_row($result);
+
+                                                echo "<div class='container'>";
+                                                echo "<div class='row'>";
+                                                echo "<div class='col-md'>";
+                                                echo "<h2>";
+                                                echo  "Edit Homework";
+                                                echo "</h2>";
+
+                                                echo "<div class='row'>";
+                                                echo "<form action='updateContent.php?updateMember=assignment' id='myform' method='POST' class='col-md'> ";
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='assignmentDate'>Date:</label>";
+                                                echo "<input type='date' name='assignmentDate' class='form-control' value='$row[1]'/>";
+                                                echo "</div>";
+
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='assignmentDesc'>Description:</label>";
+                                                echo "<input type='text' name='assignmentDesc' class='form-control' value='$row[3]' />";
+                                                echo "</div>";
+
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='teacherID'>Teacher:</label>";
+
+                                                $sqlH = "SELECT userID,userFirstName FROM users where userRole='teacher'";
+                                                $resultH = mysqli_query($con, $sqlH);
+
+                                                echo "<select class='form-control' placeholder='Select Teacher' name='teacherID' value='$row[2]'>";
+                                                while ($rowH = mysqli_fetch_array($resultH)) {
+                                                    echo "<option value=" . $rowH['userID'] . "> " . $rowH['userFirstName'] . "</option>";
+                                                }
+                                                echo "</select>";
+                                                echo "</div>";
+
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='class'>Class:</label>";
+                                                echo "<select class='form-control' name='class' value='$row[5]'>";
+                                                echo "<option value='1'>1</option>";
+                                                echo "<option value='2'>2</option>";
+                                                echo "<option value='3'>3</option>";
+                                                echo "<option value='4'>4</option>";
+                                                echo "<option value='5'>5</option>";
+                                                echo "<option value='6'>6</option>";
+                                                echo "<option value='7'>7</option>";
+                                                echo "<option value='8'>8</option>";
+                                                echo "<option value='9'>9</option>";
+                                                echo "</select>";
+                                                echo "</div>";
+
+                                                echo "<div class='form-group'>";
+                                                echo "<label for='courseID'>Course:</label>";
+
+                                                $sqlH = "SELECT courseID,courseName FROM courses";
+                                                $resultH = mysqli_query($con, $sqlH);
+
+                                                echo "<select class='form-control' placeholder='Select Teacher' name='courseID' value='$row[4]'>";
+                                                while ($rowH = mysqli_fetch_array($resultH)) {
+                                                    echo "<option value=" . $rowH['courseID'] . "> " . $rowH['courseName'] . "</option>";
+                                                }
+                                                echo "</select>";
+                                                echo "</div>";
+
+                                                echo "<button type='submit' class='btn btn-primary'>";
+                                                echo "Update";
+                                                echo "</button>";
+                                                echo "<button type='button' class='btn btn-cancel'>";
+                                                echo '<a  href=dashboard.php?member=assignment>Cancel</a>';
                                                 echo "</button>";
                                                 echo "</form>";
                                                 echo "</div>";
@@ -485,8 +657,6 @@
                                             }
                                         }
                                     }
-
-
                                     break;
                                 default:
                                     break;

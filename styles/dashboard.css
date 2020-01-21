@@ -78,6 +78,9 @@ a {
 	white-space: nowrap;
 	width: 1%;
 }
+.btn-cancel {
+	background-color: #555555 !important;
+}
 
 @media screen and (max-height: 450px) {
 	.sidemenu-container {
