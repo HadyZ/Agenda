@@ -91,10 +91,22 @@
     font-size: 1.5em;
 }
 
+.right-info-content {
+    display: flex;
+    flex-direction: column;
+    flex: 0.2
+}
+
 .teacher-name {
     flex: 0.2;
     font-weight: bold;
     text-transform: capitalize;
+    font-size: 1.2em;
+}
+
+.date-text {
+    flex: 0.2;
+    font-weight: bold;
     font-size: 1.2em;
 }
 

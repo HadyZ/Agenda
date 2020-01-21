@@ -80,7 +80,11 @@
             
                 
                 <span class='description colorWhite'>" . $row1['assignmentDescription'] . "</span>
-                <span class='teacher-name'>" . $row1['userFirstName'] . "</span>
+                <div class='right-info-content'>
+                <span class='teacher-name colorWhite'>" . $row1['userFirstName'] . "</span>
+                <span class='date-text colorWhite'>" . $row1['assignmentDate'] . "</span>
+                </div>
+                
                 </div>
             </div> ";
          }
