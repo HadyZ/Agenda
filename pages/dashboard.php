@@ -440,8 +440,9 @@
                                                 require "connection.php";
 
                                                 $sql = "SELECT * FROM users where userID=$memberID";
+                                                $result = mysqli_query($con, $sql);
+                                                $row = mysqli_fetch_row($result);
 
-                                                $result = mysqli_query($con, $query);
 
 
 
@@ -457,19 +458,19 @@
                                                 echo "<input type='text' class='display-none' name='id' value='$row[0]'/>";
                                                 echo "<div class='form-group'>";
                                                 echo "<label for='fname'>First Name:</label>";
-                                                echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' />";
+                                                echo "<input type='text' class='form-control' name='fname' placeholder='Enter First Name' value='$row[1]'/>";
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
                                                 echo "<label for='lname';>Last Name:</label>";
-                                                echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' />";
+                                                echo "<input type='text' class='form-control' name='lname' placeholder='Enter Last Name' value='$row[2]'/>";
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
                                                 echo "<label for='ename';>Email:</label>";
-                                                echo "<input type='text' class='form-control' name='ename' placeholder='Enter Email' />";
+                                                echo "<input type='text' class='form-control' name='ename' placeholder='Enter Email' value='$row[3]'/>";
                                                 echo "</div>";
                                                 echo "<div class='form-group'>";
                                                 echo "<label for='pass';>Password:</label>";
-                                                echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' />";
+                                                echo "<input type='text' class='form-control' name='pass' placeholder='Enter Password' value='$row[5]' />";
                                                 echo "</div>";
 
                                                 echo "</div>";

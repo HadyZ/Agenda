@@ -13,79 +13,73 @@
 
     <div class="datepicker">
     <div class="form-group">
-            <input type="date" name="dateofbirth">
-</div>
+         
             <div class="form-group">
                 <?php
+                session_start();
                 require "connection.php";
-                $sql = "SELECT studentID,studentFirstName FROM students where studentParent=4";
-                $result = mysqli_query($con, $sql);
-                 echo "
-                     <select class='form-control students-select' name='studentParentID'>";
-                 while ($row = mysqli_fetch_array($result)) {
-                    echo "<option><a href='http:localhost/Agenda/pages/parent.php?id=".$row['studentID']."'>".$row['studentFirstName']."</a></option>";
-                 }
-                 echo "</select>";
+
+                
+                if(isset($_SESSION['userId'])){
+                    $userID = $_SESSION['userId'];
+                    $sql = "SELECT studentID,studentFirstName FROM students where studentParent= $userID";
+                }else{
+                    header('location: login.php');
+                }
+
                 ?>
   </div>
         </div>
-    <div class="content-container">
-
-        <div class="homework-card">
-            <div class="left-container">
-                <span class="homewoek-title">English</span>
-            </div>
-            <div class="right-container">
-
-            
-            <span class="description"> Solve exs 1,2,3 page 50</span>
-            <span class="teacher-name"> Mr.Hady</span>
-            </div>
-        </div>
-        
-        <div class="homework-card">
-            <div class="left-container">
-                <span class="homewoek-title">Math</span>
-            </div>
-            <div class="right-container">
-            <span class="description"> Solve exs 1,2,3 page 51</span>
-            <span class="teacher-name"> Mr.Saleh</span>   
-        </div>
-        </div>
-        <div class="homework-card">
-            <div class="left-container">
-                <span class="homewoek-title">Math</span>
-            </div>
-            <div class="right-container">
-            <span class="description"> Solve exs 1,2,3 page 51</span>
-            <span class="teacher-name"> Mr.Saleh</span> 
-        </div>
        
-        </div>
+    <div class="content-container">
+    <?php
+        require "connection.php";
+
+        $sqlGetUser = "Select * from students where studentParent=$userID";
+        $resultGetUser = mysqli_query($con, $sqlGetUser);
+        $rowIndex = 0;
+        $assignments = "";
+        if(mysqli_num_rows($resultGetUser) > 0){
+            
+            while($rowUser = mysqli_fetch_array($resultGetUser)){
+
+                if($rowIndex == 0){
+                    $assignments = " assignments.assignmentClass=$rowUser[3]";
+  
+                }else{
+                    $assignments = $assignments . " || assignments.assignmentClass=$rowUser[3]";
+
+                }
+                $rowIndex += 1;
+            }
+
+            $sql1 = "SELECT assignments.*,users.userFirstName,courses.courseName FROM assignments INNER JOIN users ON users.userID = assignments.assignmenInstructor INNER JOIN courses ON courses.courseID = assignments.assignmentCourse where $assignments";
+        }else{
+            $sql1 = "SELECT assignments.*,users.userFirstName,courses.courseName FROM assignments INNER JOIN users ON users.userID = assignments.assignmenInstructor INNER JOIN courses ON courses.courseID = assignments.assignmentCourse where 1=0";
+        }
+
+      $result1 = mysqli_query($con, $sql1);
+      if(mysqli_num_rows($result1) > 0){
+        while ($row1 = mysqli_fetch_array($result1)) {
+            echo "
+            <div class='homework-card'>
+                <div class='left-container'>
+                    <span class='homewoek-title'>" . $row1['courseName'] . "</span>
+                </div>
+                <div class='right-container'>
+            
+                
+                <span class='description'>" . $row1['assignmentDescription'] . "</span>
+                <span class='teacher-name'>" . $row1['userFirstName'] . "</span>
+                </div>
+            </div> ";
+         }
+      }
+
+
+?>
+        
     </div>
-
-    <?php 
-    
-
-    if($_GET['tag']){
-        echo $_GET['tag'];
-    }
-    
-    
-    
-    
-    function getHomeworks($studentId)
-    {
-        // require("connection.php");
-      die($studentId);
-        // $query = "SELECT * FROM students where userRole='$member'";
-        // $result = mysqli_query($con, $query);
-        // $r = mysqli_num_rows($result);
-
-    }
-
-    
-    ?>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

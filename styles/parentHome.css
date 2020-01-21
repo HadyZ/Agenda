@@ -13,7 +13,6 @@
     flex-direction: column;
     flex: 1;
     margin: 5em;
-    border: 1px solid black;
     height: 30em;
 }
 
@@ -46,6 +45,7 @@
     height: 3em;
     background-color: blanchedalmond;
     margin: 2em;
+    max-height: 8em;
 }
 
 .left-container {
