@@ -47,11 +47,25 @@
               Email:  <?php if(isset($_SESSION['userEmail'])){ echo $_SESSION['userEmail'];}?>
             </span>
             </div>
-                <a href="dashboard.php?member=teacher">Teachers</a>
-                <a href="dashboard.php?member=parent">Parents</a>
-                <a href="dashboard.php?member=student">Students</a>
-                <a href="dashboard.php?member=assignment">Homeworks</a>
-                <a href="dashboard.php?member=logout">Logout</a>
+            <?php
+            
+            if(isset($_SESSION['userRole']) && $_SESSION['userRole']=='teacher')
+            {
+
+                echo "       
+                <a href='dashboard.php?member=assignment'>Homeworks</a>
+                <a href='dashboard.php?member=logout'>Logout</a> ";
+            }
+            else if( isset($_SESSION['userRole']) && $_SESSION['userRole']=='admin'){
+                echo "       
+                <a href='dashboard.php?member=teacher'>Teachers</a>
+                <a href='dashboard.php?member=parent'>Parents</a>
+                <a href='dashboard.php?member=student'>Students</a>
+                <a href='dashboard.php?member=assignment'>Homeworks</a>
+                <a href='dashboard.php?member=logout'>Logout</a>";
+            }
+            ?>
+             
             </div>
 
             <div class="content-container col-md-10">
@@ -60,18 +74,33 @@
                         <h2>Content</h2>
                     </div>
                     <div style="display: flex;flex:0.6;align-items: center; justify-content: flex-end;">
-                        <button type="button" class="btn btn-primary button-add"><a
-                                href="dashboard.php?member=add&subMember=teacher" >Add Teacher</a>
-                        </button>
-                        <button type="button" class="btn btn-primary button-add"><a
-                                href="dashboard.php?member=add&subMember=parent" >Add Parent</a>
-                        </button>
-                        <button type="button" class="btn btn-primary button-add"><a
-                                href="dashboard.php?member=add&subMember=student" >Add Student</a>
-                        </button>
-                        <button type="button" class="btn btn-primary button-add"><a
-                                href="dashboard.php?member=add&subMember=assignment" >Add Homework</a>
-                        </button>
+                    <?php 
+                     if(isset($_SESSION['userRole']) && $_SESSION['userRole']=='teacher')
+                     {
+         
+                         echo "       
+                         <button type='button' class='btn btn-primary button-add'><a
+                         href='dashboard.php?member=add&subMember=assignment' >Add Homework</a>
+                          </button> ";
+                     }
+                     else if( isset($_SESSION['userRole']) && $_SESSION['userRole']=='admin'){
+                         echo "       
+                         <button type='button' class='btn btn-primary button-add'><a
+                         href='dashboard.php?member=add&subMember=teacher' >Add Teacher</a>
+                 </button>
+                 <button type='button' class='btn btn-primary button-add'><a
+                         href='dashboard.php?member=add&subMember=parent' >Add Parent</a>
+                 </button>
+                 <button type='button' class='btn btn-primary button-add'><a
+                         href='dashboard.php?member=add&subMember=student' >Add Student</a>
+                 </button>
+                 <button type='button' class='btn btn-primary button-add'><a
+                         href='dashboard.php?member=add&subMember=assignment' >Add Homework</a>
+                 </button>";
+                     }
+                    
+                    ?>
+                       
                     </div>
 
                 </div>
