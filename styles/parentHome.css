@@ -1,6 +1,11 @@
+.header-container {
+    position: sticky;
+    top: 0;
+}
+
 .header {
+    position: relative;
     height: 5em;
-    background: gray;
     width: 100%;
     display: flex;
     flex: 1;
@@ -43,7 +48,6 @@
     display: flex;
     flex: 1;
     height: 3em;
-    background-color: blanchedalmond;
     margin: 2em;
     max-height: 8em;
 }
@@ -55,22 +59,32 @@
     flex: 0.2;
     align-items: center;
     justify-content: center;
-    background: rgb(0, 204, 255);
+}
+
+.homework-title {
+    color: white;
+    font-size: 2em;
 }
 
 .right-container {
     display: flex;
     flex: 0.8;
     align-items: center;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .description {
     padding-left: 1em;
     flex: 0.8;
+    font-size: 1.5em;
 }
 
 .teacher-name {
     flex: 0.2;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 1.2em;
 }
 
 .students-select {
@@ -78,4 +92,14 @@
     margin-left: 1em !important;
     width: 10em !important;
     outline: unset;
+}
+
+.logout-button {
+    position: absolute;
+    top: 27%;
+    right: 8%;
+}
+
+.colorWhite {
+    color: white;
 }

@@ -6,14 +6,20 @@
 </head>
 
 <body>
-    <div class="header">
-       
-        <h1>Student Agenda</h1>
+    <div class="header-container">
+      <div class="header  bg-secondary"> <h1 class="colorWhite">Student Agenda</h1>
+           <div class="logout-button">
+            <button type="button" class="btn btn-primary button-logout">
+                       Logout
+            </button>
+           </div>
+       </div>
     </div>
+   
 
     <div class="datepicker">
-    <div class="form-group">
-         
+        <div class="form-group">
+
             <div class="form-group">
                 <?php
                 session_start();
@@ -28,11 +34,11 @@
                 }
 
                 ?>
-  </div>
+            </div>
         </div>
-       
-    <div class="content-container">
-    <?php
+
+        <div class="content-container">
+            <?php
         require "connection.php";
 
         $sqlGetUser = "Select * from students where studentParent=$userID";
@@ -63,13 +69,13 @@
         while ($row1 = mysqli_fetch_array($result1)) {
             echo "
             <div class='homework-card'>
-                <div class='left-container'>
-                    <span class='homewoek-title'>" . $row1['courseName'] . "</span>
+                <div class='left-container bg-primary'>
+                    <span class='homework-title'>" . $row1['courseName'] . "</span>
                 </div>
-                <div class='right-container'>
+                <div class='right-container  bg-secondary'>
             
                 
-                <span class='description'>" . $row1['assignmentDescription'] . "</span>
+                <span class='description colorWhite'>" . $row1['assignmentDescription'] . "</span>
                 <span class='teacher-name'>" . $row1['userFirstName'] . "</span>
                 </div>
             </div> ";
@@ -78,12 +84,12 @@
 
 
 ?>
-        
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
