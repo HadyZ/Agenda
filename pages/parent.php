@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../styles/parentHome.css">
+    <link rel="stylesheet" type="text/css" href="../styles/parent.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
@@ -10,7 +10,7 @@
       <div class="header  bg-secondary"> <h1 class="colorWhite">Student Agenda</h1>
            <div class="logout-button">
             <button type="button" class="btn btn-primary button-logout">
-                       Logout
+            <a href="parent.php?user=logout">Logout</a>
             </button>
            </div>
        </div>
@@ -81,7 +81,11 @@
             </div> ";
          }
       }
-
+      if (isset($_GET['user']) && $_GET['user']=='logout') {
+        session_unset();
+        session_destroy();
+        echo "<script> location.replace('login.php') </script>";
+      }
 
 ?>
 
