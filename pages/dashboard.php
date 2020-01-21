@@ -60,17 +60,17 @@
                         <h2>Content</h2>
                     </div>
                     <div style="display: flex;flex:0.6;align-items: center; justify-content: flex-end;">
-                        <button type="button" class="btn btn-primary"><a
-                                href="dashboard.php?member=add&subMember=teacher" class="button-add">Add Teacher</a>
+                        <button type="button" class="btn btn-primary button-add"><a
+                                href="dashboard.php?member=add&subMember=teacher" >Add Teacher</a>
                         </button>
-                        <button type="button" class="btn btn-primary"><a
-                                href="dashboard.php?member=add&subMember=parent" class="button-add">Add Parent</a>
+                        <button type="button" class="btn btn-primary button-add"><a
+                                href="dashboard.php?member=add&subMember=parent" >Add Parent</a>
                         </button>
-                        <button type="button" class="btn btn-primary"><a
-                                href="dashboard.php?member=add&subMember=student" class="button-add">Add Student</a>
+                        <button type="button" class="btn btn-primary button-add"><a
+                                href="dashboard.php?member=add&subMember=student" >Add Student</a>
                         </button>
-                        <button type="button" class="btn btn-primary"><a
-                                href="dashboard.php?member=add&subMember=assignment" class="button-add">Add Homework</a>
+                        <button type="button" class="btn btn-primary button-add"><a
+                                href="dashboard.php?member=add&subMember=assignment" >Add Homework</a>
                         </button>
                     </div>
 
