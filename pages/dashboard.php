@@ -42,7 +42,11 @@
     <div class="dashboard-container container">
         <div class="row">
             <div class="sidemenu-container col-md-2">
-                <div style="height:5em"></div>
+                <div style="height:5em; display:flex">
+                <span class="user-email">
+              Email:  <?php if(isset($_SESSION['userEmail'])){ echo $_SESSION['userEmail'];}?>
+            </span>
+            </div>
                 <a href="dashboard.php?member=teacher">Teachers</a>
                 <a href="dashboard.php?member=parent">Parents</a>
                 <a href="dashboard.php?member=student">Students</a>
