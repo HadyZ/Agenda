@@ -160,7 +160,9 @@
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button></rd><td> <button class='btn btn-primary' >";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger'>";
+                                        echo '<a  href=deleteContent.php?member=Delete&deleteMember=teacher&memberID=' . $row[0] . '>Delete</a>';
+                                        echo "</button></rd><td> <button class='btn btn-primary' >";
                                         echo '<a  href=dashboard.php?member=edit&subMember=teacher&memberID=' . $row[0] . '>Edit</a>';
                                         echo "</button></td></tr>";
                                     }
@@ -177,7 +179,9 @@
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> </td><td><button class='btn btn-primary'>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger'>";
+                                        echo '<a  href=deleteContent.php?member=Delete&deleteMember=parent&memberID=' . $row[0] . '>Delete</a>';
+                                        echo "</button> </td><td><button class='btn btn-primary'>";
                                         echo '<a  href=dashboard.php?member=edit&subMember=parent&memberID=' . $row[0] . '>Edit</a>';
                                         echo "</button> </td></tr>";
                                     }
@@ -199,7 +203,9 @@
                                         while ($row = mysqli_fetch_row($result)) {
 
 
-                                            echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[3] </td><td><button class='btn btn-danger' >Delete</button> </td><td><button class='btn btn-primary'>";
+                                            echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[3] </td><td><button class='btn btn-danger'>";
+                                            echo '<a  href=deleteContent.php?member=Delete&deleteMember=assignment&memberID=' . $row[0] . '>Delete</a>';
+                                            echo "</button> </td><td><button class='btn btn-primary'>";
                                             echo '<a  href=dashboard.php?member=edit&subMember=editAssignment&memberID=' . $row[0] . '>Edit</a>';
                                             echo "</button> </td></tr>";
                                         }
@@ -218,7 +224,9 @@
                                     for ($j = 0; $j < $r; $j++) {
                                         $row = mysqli_fetch_row($result);
 
-                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >Delete</button> </td><td><button class='btn btn-primary'>";
+                                        echo "<tr><td> $row[0] </td> <td>$row[1] </td><td>$row[2] </td><td><button class='btn btn-danger' >";
+                                        echo '<a  href=deleteContent.php?member=Delete&deleteMember=student&memberID=' . $row[0] . '>Delete</a>';
+                                        echo "</button> </td><td><button class='btn btn-primary'>";
                                         echo '<a  href=dashboard.php?member=edit&subMember=student&memberID=' . $row[0] . '>Edit</a>';
                                         echo "</button> </td></tr>";
                                     }
@@ -465,7 +473,7 @@
                                         echo "</h2>";
 
                                         echo "<div class='row'>";
-                                        echo "<form action='saveContent.php?saveMember=student' id='myform' method='POST' class='col-md'> ";
+                                        echo "<form action='updateContent.php?editMember=student&memberID=$memberID' id='myform' method='POST' class='col-md'> ";
                                         echo "<input type='text' class='display-none' name='id' value='$row[0]'/>";
                                         echo "<div class='form-group'>";
                                         echo "<label for='fname'>First Name:</label>";
@@ -506,7 +514,7 @@
                                         echo "</select>";
                                         echo "</div>";
                                         echo "<button type='submit' class='btn btn-primary'>";
-                                        echo "Submit";
+                                        echo "Update";
                                         echo "</button>";
                                         echo "<button type='button' class='btn btn-cancel'>";
                                         echo '<a href=dashboard.php?member=student>Cancel</a>';
@@ -531,7 +539,7 @@
                                             echo "</h2>";
 
                                             echo "<div class='row'>";
-                                            echo "<form action='updateContent.php?updateMember=teacher' id='myform' method='POST' class='col-md'> ";
+                                            echo "<form action='updateContent.php?updateMember=teacher&memberID=$memberID' id='myform' method='POST' class='col-md'> ";
                                             echo "<input type='text' class='display-none' name='id' value='$row[0]'/>";
                                             echo "<div class='form-group'>";
                                             echo "<label for='fname'>First Name:</label>";
@@ -578,7 +586,7 @@
                                                 echo "</h2>";
 
                                                 echo "<div class='row'>";
-                                                echo "<form action='saveContent.php?saveMember=parent' id='myform' method='POST' class='col-md'> ";
+                                                echo "<form action='updateContent.php?updateMember=parent&memberID=$memberID' id='myform' method='POST' class='col-md'> ";
                                                 echo "<input type='text' class='display-none' name='id' value='$row[0]'/>";
                                                 echo "<div class='form-group'>";
                                                 echo "<label for='fname'>First Name:</label>";
@@ -625,7 +633,7 @@
                                                 echo "</h2>";
 
                                                 echo "<div class='row'>";
-                                                echo "<form action='updateContent.php?updateMember=assignment' id='myform' method='POST' class='col-md'> ";
+                                                echo "<form action='updateContent.php?updateMember=assignment&memberID=$memberID' id='myform' method='POST' class='col-md'> ";
                                                 echo "<div class='form-group'>";
                                                 echo "<label for='assignmentDate'>Date:</label>";
                                                 echo "<input type='date' name='assignmentDate' class='form-control' value='$row[1]'/>";
@@ -700,21 +708,6 @@
                         // session_destroy();
                         echo "<script> location.replace('login.php') </script>";
                     }
-                }
-
-                function editMember($m, $mID)
-                {
-                    print_r($m);
-                    print_r($mID);
-                    // echo "<script> location.replace('login.php?editMember='$mID) </script>";
-                }
-
-                function onDeleteRow()
-                {
-                }
-
-                function saveContent($data)
-                {
                 }
                 ?>
             </div>
