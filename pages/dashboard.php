@@ -29,43 +29,35 @@
         }
     }
 
-
-    // if(){
-    //     setcookie('userName', "sassad");
-    // setcookie('userEmail', "sadasfasfssf", time() + 2592000);
-    // setcookie("Auction_Item", "Luxury Car", time() + 2 * 24 * 60 * 60);
-    // }
-
-
     ?>
 
     <div class="dashboard-container container">
         <div class="row">
             <div class="sidemenu-container col-md-2">
                 <div style="height:5em; display:flex">
-                <span class="user-email">
-              Email:  <?php if(isset($_SESSION['userEmail'])){ echo $_SESSION['userEmail'];}?>
-            </span>
-            </div>
-            <?php
-            
-            if(isset($_SESSION['userRole']) && $_SESSION['userRole']=='teacher')
-            {
+                    <span class="user-email">
+                        Email: <?php if (isset($_SESSION['userEmail'])) {
+                                    echo $_SESSION['userEmail'];
+                                } ?>
+                    </span>
+                </div>
+                <?php
 
-                echo "       
+                if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'teacher') {
+
+                    echo "       
                 <a href='dashboard.php?member=assignment'>Homeworks</a>
                 <a href='dashboard.php?member=logout'>Logout</a> ";
-            }
-            else if( isset($_SESSION['userRole']) && $_SESSION['userRole']=='admin'){
-                echo "       
+                } else {
+                    echo "       
                 <a href='dashboard.php?member=teacher'>Teachers</a>
                 <a href='dashboard.php?member=parent'>Parents</a>
                 <a href='dashboard.php?member=student'>Students</a>
                 <a href='dashboard.php?member=assignment'>Homeworks</a>
                 <a href='dashboard.php?member=logout'>Logout</a>";
-            }
-            ?>
-             
+                }
+                ?>
+
             </div>
 
             <div class="content-container col-md-10">
@@ -73,18 +65,17 @@
                     <div style="display: flex;flex:0.4">
                         <h2>Content</h2>
                     </div>
-                    <div style="display: flex;flex:0.6;align-items: center; justify-content: flex-end;">
-                    <?php 
-                     if(isset($_SESSION['userRole']) && $_SESSION['userRole']=='teacher')
-                     {
-         
-                         echo "       
+                    <div
+                        style="display: flex;flex:0.6;align-items: center; justify-content: flex-end;padding-right: 14px;">
+                        <?php
+                        if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'teacher') {
+
+                            echo "       
                          <button type='button' class='btn btn-primary button-add'><a
                          href='dashboard.php?member=add&subMember=assignment' >Add Homework</a>
                           </button> ";
-                     }
-                     else if( isset($_SESSION['userRole']) && $_SESSION['userRole']=='admin'){
-                         echo "       
+                        } else if (isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'admin') {
+                            echo "       
                          <button type='button' class='btn btn-primary button-add'><a
                          href='dashboard.php?member=add&subMember=teacher' >Add Teacher</a>
                  </button>
@@ -97,10 +88,10 @@
                  <button type='button' class='btn btn-primary button-add'><a
                          href='dashboard.php?member=add&subMember=assignment' >Add Homework</a>
                  </button>";
-                     }
-                    
-                    ?>
-                       
+                        }
+
+                        ?>
+
                     </div>
 
                 </div>

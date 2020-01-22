@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2020 at 11:53 PM
+-- Generation Time: Jan 22, 2020 at 01:09 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -31,11 +31,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `assignments` (
   `assignmentID` int(11) NOT NULL,
   `assignmentDate` date NOT NULL,
-  `assignmenInstructor` int(11) NOT NULL,
+  `assignmentInstructor` int(11) NOT NULL,
   `assignmentDescription` varchar(255) NOT NULL,
   `assignmentCourse` int(11) NOT NULL,
   `assignmentClass` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `assignments`
+--
+
+INSERT INTO `assignments` (`assignmentID`, `assignmentDate`, `assignmentInstructor`, `assignmentDescription`, `assignmentCourse`, `assignmentClass`) VALUES
+(1, '2020-01-24', 3, 'homework 12', 5, 1),
+(2, '2020-01-26', 3, 'homework 2', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -47,6 +55,18 @@ CREATE TABLE `courses` (
   `courseID` int(10) NOT NULL,
   `courseName` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`courseID`, `courseName`) VALUES
+(5, 'Arabic'),
+(6, 'Biology'),
+(3, 'English'),
+(7, 'French'),
+(1, 'Math'),
+(4, 'Physics');
 
 -- --------------------------------------------------------
 
@@ -68,10 +88,8 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`studentID`, `studentFirstName`, `studentLastName`, `studentClass`, `studentParent`) VALUES
 (1, 'saleh', 'fakhr', 1, 4),
-(3, 'rami', 'fakhr', 3, 17),
-(5, 'ameen', 'halabi', 6, 17),
-(6, 'hady', 'Zeitony', 7, 17),
-(7, 'qwfqw', 'asassas', 1, 4);
+(3, 'rami', 'fakhr', 1, 4),
+(5, 'ameen', 'halabi', 6, 17);
 
 -- --------------------------------------------------------
 
@@ -96,7 +114,7 @@ INSERT INTO `users` (`userID`, `userFirstName`, `userLastName`, `userEmail`, `us
 (1, 'saleh', 'fakhr', 'saleh@gmail.com', '123456', 'admin'),
 (3, 'rami', 'fakhr', 'rami@dell.com', '123456', 'teacher'),
 (4, 'alaa', '', 'alaa@gmail.com', '123321', 'parent'),
-(5, 'ameen', '', 'ameen@gmail.com', 'ameen123', 'teacher'),
+(5, 'ameen', 'ameen last name', 'ameen@gmail.com', 'ameen123', 'teacher'),
 (15, 'ahmad', '', 'ahmad@gmail.com', '123456', 'admin'),
 (17, 'akram', '', 'akram@gmail.com', '123456', 'parent'),
 (18, 'nidal', '', 'nidal@gmail.com', '123456', 'admin'),
@@ -142,13 +160,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `assignmentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `assignmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `courseID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `courseID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `students`
